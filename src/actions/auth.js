@@ -1,4 +1,4 @@
-import * as types from '../constants';
+import * as types from '../constants/auth';
 import * as routes from '../constants/routes';
 import callApi from '../utils/call-api';
 
@@ -85,9 +85,7 @@ export function recieveAuth() {
 
 		return callApi(
 			routes.RECIEVE_AUTH,
-			token,
-			{},
-			{}
+			token
 		)
 		.then(json => dispatch({
 				type: types.RECIEVE_AUTH_SUCCESS,

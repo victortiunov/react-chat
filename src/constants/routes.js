@@ -1,5 +1,8 @@
-export const ROOT_ROUTE = Symbol('http://localhost:8000/v1/');
+export const ROOT_ROUTE = 'http://localhost:8000/v1/';
 
-export const LOGIN = Symbol('login');
-export const SIGNUP = Symbol('signup');
-export const RECIEVE_AUTH = Symbol('users/me');
+export const LOGIN = 'login';
+export const SIGNUP = 'signup';
+export const RECIEVE_AUTH = 'users/me';
+
+export const CHATS = 'chats';
+export const MY_CHATS = 'chats/my';

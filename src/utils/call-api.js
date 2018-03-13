@@ -3,6 +3,7 @@ import { ROOT_ROUTE } from '../constants/routes';
 
 export default function callApi(endpoint, token, options, payload) {
 	const authHeaders = token ? { 'Authorization': `Bearer ${token}` } : {};
+	
 	return fetch(`${ROOT_ROUTE}${endpoint}`, {
 		method: 'GET',
 		headers: {

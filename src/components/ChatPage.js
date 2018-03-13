@@ -12,16 +12,31 @@ const styles = theme => ({
 		display: 'flex',
 		width: '100%',
 		height: '100%',
-		backgroundColor: theme.palette.background.default,
+		backgroundColor: theme.palette.background.default
 	}
 });
 
-const ChatPage = ({ classes }) => (
-	<div className={classes.root}>
-		<ChatHeader />
-		<Sidebar chats={chats} />
-		<Chat messages={messages} />
-	</div>
-);
+class ChatPage extends React.Component {
+	componentDidMount() {
+		const { fetchAllChats, fetchMyChats } = this.props;
+
+		Promise.all([
+			fetchAllChats(),
+			fetchMyChats()
+		]);
+	}
+
+	render() {
+		const { classes } = this.props;
+
+		return (
+			<div className={classes.root}>
+				<ChatHeader />
+				<Sidebar chats={chats} />
+				<Chat messages={messages} />
+			</div>
+		)
+	}
+}
 
 export default withStyles(styles) (ChatPage);

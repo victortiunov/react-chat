@@ -1,1 +1,1 @@
-export const REDIRECT = Symbol('REDIRECT');
+export const REDIRECT = Symbol('services/REDIRECT');

@@ -15,14 +15,14 @@ export function fetchAllChats() {
 			routes.CHATS,
 			token
 		)
-		.then(json => dispatch({
-			type: types.FETCH_ALL_CHATS_SUCCESS,
-			payload: json
-		}))
-		.catch(reason => dispatch({
-			type: types.FETCH_ALL_CHATS_FAILURE,
-			payload: reason
-		}))
+			.then(json => dispatch({
+				type: types.FETCH_ALL_CHATS_SUCCESS,
+				payload: json
+			}))
+			.catch(reason => dispatch({
+				type: types.FETCH_ALL_CHATS_FAILURE,
+				payload: reason
+			}))
 	};
 }
 
@@ -38,14 +38,14 @@ export function fetchMyChats() {
 			routes.MY_CHATS,
 			token
 		)
-		.then(json => dispatch({
-			type: types.FETCH_MY_CHATS_SUCCESS,
-			payload: json
-		}))
-		.catch(reason => dispatch({
-			type: types.FETCH_MY_CHATS_FAILURE,
-			payload: reason
-		}))
+			.then(json => dispatch({
+				type: types.FETCH_MY_CHATS_SUCCESS,
+				payload: json
+			}))
+			.catch(reason => dispatch({
+				type: types.FETCH_MY_CHATS_FAILURE,
+				payload: reason
+			}))
 	};
 }
 
@@ -61,18 +61,18 @@ export function fetchChat(chatId) {
 			`${routes.CHATS}\\${chatId}`,
 			token
 		)
-		.then(json => {
-			dispatch({
-				type: types.FETCH_CHAT_SUCCESS,
-				payload: json
-			});
+			.then(json => {
+				dispatch({
+					type: types.FETCH_CHAT_SUCCESS,
+					payload: json
+				});
 
-			return json;
-		})
-		.catch(reason => dispatch({
-			type: types.FETCH_CHAT_FAILURE,
-			payload: reason
-		}))
+				return json;
+			})
+			.catch(reason => dispatch({
+				type: types.FETCH_CHAT_FAILURE,
+				payload: reason
+			}))
 	};
 }
 
@@ -96,3 +96,37 @@ export function setActiveChat(chatId) {
 	};
 }
 
+export function createChat(chatTitle) {
+	return (dispatch, getState) => {
+		const { token } = getState().auth;
+
+		dispatch({
+			type: types.CREATE_CHAT_REQUEST,
+			payload: { chatTitle },
+		});
+
+		return callApi(
+			routes.CHATS,
+			token,
+			{ method: 'POST' },
+			{
+				data: { title: chatTitle }
+			}
+		)
+			.then(({ chat }) => {
+				dispatch({
+					type: types.CREATE_CHAT_SUCCESS,
+					payload: { chat },
+				});
+
+				// todo: set active chat
+
+				return chat;
+			})
+			.catch(reason =>
+				dispatch({
+					type: types.CREATE_CHAT_FAILURE,
+					payload: reason,
+				}));
+	};
+}

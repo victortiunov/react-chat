@@ -24,6 +24,8 @@ const allIds = (state = initialState.allIds, action) => {
 	switch (action.type) {
 		case types.FETCH_ALL_CHATS_SUCCESS:
 			return action.payload.chats.map(getChatId);
+		case types.CREATE_CHAT_SUCCESS:
+			return [...state, getChatId(action.payload.chat)];
 		
 		default:
 			return state;
@@ -33,6 +35,8 @@ const myIds = (state = initialState.myIds, action) => {
 	switch (action.type) {
 		case types.FETCH_MY_CHATS_SUCCESS:
 			return action.payload.chats.map(getChatId);
+		case types.CREATE_CHAT_SUCCESS:
+			return [...state, getChatId(action.payload.chat)];
 
 		default:
 			return state;
@@ -48,6 +52,11 @@ const byIds = (state = initialState.byIds, action) => {
 					...ids,
 					[chat._id]: chat
 				}), {})
+			}
+		case types.CREATE_CHAT_SUCCESS:
+			return {
+				...state,
+				[action.payload.chat._id]: action.payload.chat
 			}
 		
 		default:

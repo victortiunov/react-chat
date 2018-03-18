@@ -22,28 +22,34 @@ const styles = theme => ({
 	}
 });
 
-const Sidebar = ({ classes, chats }) => (
-	<Drawer
-		variant="permanent"
-		classes={{
-			paper: classes.drawerPaper,
-		}}
-	>
-		<div className={classes.drawerHeader}>
-			<TextField
-				fullWidth
-				margin="normal"
-				placeholder="Search chats..."
-			/>
-		</div>
-		<Divider />
-		<ChatList chats={chats} />
-		<NewChatButton />
-		<BottomNavigation showLabels>
-			<BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
-			<BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
-		</BottomNavigation>
-	</Drawer>
-);
+class Sidebar extends React.Component {
+	render() {
+		const { classes, chats, createChat } = this.props;
+
+		return (
+			<Drawer
+				variant="permanent"
+				classes={{
+					paper: classes.drawerPaper,
+				}}
+			>
+				<div className={classes.drawerHeader}>
+					<TextField
+						fullWidth
+						margin="normal"
+						placeholder="Search chats..."
+					/>
+				</div>
+				<Divider />
+				<ChatList chats={chats} />
+				<NewChatButton createChat={createChat} />
+				<BottomNavigation showLabels>
+					<BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
+					<BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
+				</BottomNavigation>
+			</Drawer>
+		);
+	}
+}
 
 export default withStyles(styles)(Sidebar);

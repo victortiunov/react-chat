@@ -20,6 +20,7 @@ export default function colorFrom(string) {
 	try {
 		const index = string
 			.toString()
+			.trim()
 			.split('')
 			.map(char => char.charCodeAt())
 			.reduce((sum, num) => sum + num, 0);

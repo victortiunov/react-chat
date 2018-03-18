@@ -21,13 +21,27 @@ const styles = theme => ({
 });
 
 class MessageInput extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			message: ''
+		}
+	}
+
+	handleMessageChange = (e) => {
+		this.setState({ message: e.target.value });
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault();
-		//this.props.sendMessage();
+		this.props.sendMessage(this.state.message);
+		this.setState({ message: '' });
 	}
 
 	render() {
 		const { classes } = this.props;
+		const { message } = this.state;
 
 		return (
 			<div className={classes.messageInputWrapper}>
@@ -40,7 +54,9 @@ class MessageInput extends React.Component {
 							<Input
 								className={classes.messageInput}
 								fullWidth
+								value={message}
 								placeholder="Type your message…"
+								onChange={this.handleMessageChange}
 							/>
 						</Grid>
 						<Grid item className={classes.messageButton}>

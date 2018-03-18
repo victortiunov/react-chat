@@ -14,11 +14,17 @@ const styles = theme => ({
 	},
 });
 
-const Chat = ({ classes, messages }) => (
-	<main className={classes.chatLayout}>
-		<ChatMessageList messages={messages} />
-		<MessageInput />
-	</main>
-);
+class Chat extends React.Component {
+	render() {
+		const { classes, activeChat, sendMessage } = this.props;
+
+		return (
+			<main className={classes.chatLayout}>
+				<ChatMessageList messages={(activeChat ? activeChat.messages : [])} />
+				<MessageInput sendMessage={(message) => sendMessage(activeChat._id, message)} />
+			</main>
+		);
+	}
+}
 
 export default withStyles(styles)(Chat);

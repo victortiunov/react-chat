@@ -11,6 +11,7 @@ const initialState = {
 const activeId = (state = initialState.activeId, action) => {
 	switch (action.type) {
 		case types.SET_ACTIVE_CHAT:
+		case types.CREATE_CHAT_SUCCESS:
 			return action.payload.chat._id;
 		
 		case types.UNSET_ACTIVE_CHAT:
@@ -53,6 +54,11 @@ const byIds = (state = initialState.byIds, action) => {
 					[chat._id]: chat
 				}), {})
 			}
+		case types.FETCH_CHAT_SUCCESS:
+			return {
+				...state,
+				[action.payload.chat._id]: action.payload.chat
+			}
 		case types.CREATE_CHAT_SUCCESS:
 			return {
 				...state,
@@ -70,3 +76,4 @@ export default combineReducers({
 
 export const getChatId = (chat) => chat._id;
 export const getByIds = (state, ids) => ids.map(id => state.byIds[id]);
+export const getById = (state, id) => {debugger;return byIds[id]};

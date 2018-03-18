@@ -48,7 +48,7 @@ class Sidebar extends React.Component {
 
 	render() {
 		const { activeTab, searchTitle } = this.state;
-		const { classes, createChat } = this.props;
+		const { classes, createChat, setActiveChat } = this.props;
 
 		return (
 			<Drawer
@@ -67,7 +67,7 @@ class Sidebar extends React.Component {
 					/>
 				</div>
 				<Divider />
-				<ChatList chats={this.getChats()} />
+				<ChatList chats={this.getChats()} setActiveChat={setActiveChat} />
 				<NewChatButton createChat={createChat} />
 				<BottomNavigation value={activeTab} onChange={this.handleTabChange} showLabels>
 					<BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />

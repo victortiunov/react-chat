@@ -5,6 +5,8 @@ import Typography from 'material-ui/Typography';
 import Avatar from './Avatar';
 import Paper from 'material-ui/Paper';
 
+import userName from '../utils/user-name';
+
 const styles = theme => ({
 	messageWrapper: {
 		display: 'flex',
@@ -28,11 +30,12 @@ const styles = theme => ({
 });
 
 const ChatMessage = ({ classes, sender, content }) => {
-	const isMessageFromMe = sender === 'me';
+	const isMessageFromMe = sender._id === '5a963a8824614817d80c310b';
+	const senderName = userName(sender.username, sender.firstName, sender.lastName);
 
 	const userAvatar = (
-		<Avatar colorFrom={sender}>
-			{sender}
+		<Avatar colorFrom={senderName}>
+			{senderName}
 		</Avatar>
 	);
 
@@ -47,7 +50,7 @@ const ChatMessage = ({ classes, sender, content }) => {
 				isMessageFromMe && classes.messageFromMe
 			)}>
 				<Typography variant="caption">
-					{sender}
+					{senderName}
 				</Typography>
 				<Typography variant="body1">
 					{content}

@@ -5,10 +5,10 @@ import ChatMessage from './ChatMessage';
 const styles = theme => ({
 	messagesWrapper: {
 		overflowX: 'scroll',
-		height: '100%',
+		height: `calc(100% - 60px)`,
 		width: '100%',
 		paddingTop: theme.spacing.unit * 3,
-		marginBottom: '150px',
+		marginBottom: '70px',
 	},
 });
 
@@ -33,8 +33,8 @@ class ChatMessageList extends React.Component {
 
 		return (
 			<div className={classes.messagesWrapper} ref="messagesWrapper">
-				{messages && messages.map((message, index) => (
-					<ChatMessage key={index} {...message} />
+				{messages && messages.map((message) => (
+					<ChatMessage key={message._id} {...message} />
 				))}
 			</div>
 		);

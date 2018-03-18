@@ -8,6 +8,8 @@ import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
+import userName from '../utils/user-name';
+
 const styles = theme => ({
 	modalDialog: {
 		display: 'flex',
@@ -79,7 +81,7 @@ class UserMenu extends React.Component {
 	render() {
 		const { classes } = this.props;
 		const { menuElement, login, firstName, lastName, modalView } = this.state;
-		const name = (firstName || lastName) ? (firstName + ' ' + lastName) : login;
+		const name = userName(login, firstName, lastName);
 
 		return (
 			<React.Fragment>

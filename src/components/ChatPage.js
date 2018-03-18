@@ -18,20 +18,21 @@ const styles = theme => ({
 
 class ChatPage extends React.Component {
 	componentDidMount() {
-		const { fetchAllChats, fetchMyChats } = this.props;
+		const { recieveAuth, fetchAllChats, fetchMyChats } = this.props;
 
 		Promise.all([
+			recieveAuth(),
 			fetchAllChats(),
 			fetchMyChats()
 		]);
 	}
 
 	render() {
-		const { classes, chats, createChat, logout } = this.props;
+		const { classes, chats, createChat, user, editUser, logout } = this.props;
 
 		return (
 			<div className={classes.root}>
-				<ChatHeader onLogout={logout}/>
+				<ChatHeader user={user} editUser={editUser} onLogout={logout}/>
 				<Sidebar chats={chats} createChat={createChat}/>
 				<Chat messages={messages} />
 			</div>

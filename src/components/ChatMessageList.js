@@ -8,7 +8,7 @@ const styles = theme => ({
 		height: '100%',
 		width: '100%',
 		paddingTop: theme.spacing.unit * 3,
-		marginBottom: '170px',
+		marginBottom: '150px',
 	},
 });
 

@@ -28,10 +28,20 @@ class UserMenu extends React.Component {
 
 		this.state = {
 			menuElement: null,
-			login: props.user.username,
-			firstName: props.user.firstName,
-			lastName: props.user.lastName,
+			login: '',
+			firstName: '',
+			lastName: '',
 			modalView: false
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.user) {
+			this.setState({
+				login: nextProps.user.username,
+				firstName: nextProps.user.firstName,
+				lastName: nextProps.user.lastName
+			});
 		}
 	}
 
@@ -57,17 +67,13 @@ class UserMenu extends React.Component {
 		event.persist();
 		const { name, value } = event.target;
 
-		this.setState((prevState) => ({
-			[name]: {
-				...prevState[name],
-				value
-			}
-		}));
+		this.setState({ [name]: value });
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.toggleModal();
+		this.props.editUser(this.state.login, this.state.firstName, this.state.lastName);
 	}
 
 	render() {
@@ -77,13 +83,16 @@ class UserMenu extends React.Component {
 
 		return (
 			<React.Fragment>
-				<IconButton
-					aria-owns={menuElement ? 'user-menu' : null}
-					aria-haspopup="true"
-					onClick={this.handleClick}
-				>
-					<Avatar colorFrom={name}>{name}</Avatar>
-				</IconButton>
+				{ name ?
+					<IconButton
+						aria-owns={menuElement ? 'user-menu' : null}
+						aria-haspopup="true"
+						onClick={this.handleClick}
+					>
+						<Avatar colorFrom={name}>{name}</Avatar>
+					</IconButton>
+				:	<div></div>
+				}
 				<Menu
 					id="user-menu"
 					anchorEl={menuElement}
@@ -129,7 +138,6 @@ class UserMenu extends React.Component {
 							name="firstName"
 							value={firstName}
 							onChange={this.handleInputChange}
-							error={!firstName}
 						/>
 						<TextField
 							fullWidth
@@ -141,7 +149,6 @@ class UserMenu extends React.Component {
 							name="lastName"
 							value={lastName}
 							onChange={this.handleInputChange}
-							error={!lastName}
 						/>
 						<Button
 							variant="raised"

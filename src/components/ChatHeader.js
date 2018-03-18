@@ -5,13 +5,6 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import UserMenu from './UserMenu';
 
-// mock data
-const user = {
-	username: 'test_user',
-	firstName: '',
-	lastName: ''
-}
-
 const styles = theme => ({
 	appBar: {
 		position: 'fixed',
@@ -25,15 +18,21 @@ const styles = theme => ({
 	}
 });
 
-const ChatHeader = ({ classes, onLogout }) => (
-	< AppBar color="primary" className={classes.appBar} >
-		<Toolbar>
-			<Typography variant="title" className={classes.appBarTitle}>
-				DogeCodes React Chat
-         </Typography>
-			<UserMenu user={user} onLogout={onLogout}/>
-		</Toolbar>
-	</AppBar >
-);
+class ChatHeader extends React.Component {
+	render() {
+		const { classes, user, editUser, onLogout } = this.props;
+
+		return (
+			< AppBar color="primary" className={classes.appBar} >
+				<Toolbar>
+					<Typography variant="title" className={classes.appBarTitle}>
+						DogeCodes React Chat
+         		</Typography>
+					<UserMenu user={user} editUser={editUser} onLogout={onLogout} />
+				</Toolbar>
+			</AppBar >
+		)
+	}
+}
 
 export default withStyles(styles)(ChatHeader);

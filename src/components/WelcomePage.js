@@ -25,17 +25,22 @@ class WelcomePage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeTab: 0
+			activeTab: 0,
+			error: props.error
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		this.setState({ error: nextProps.error });
+	}
+
 	handleTabChage = (event, value) => {
-		this.setState({ activeTab: value });
+		this.setState({ activeTab: value, error: '' });
 	}
 
 	render() {
 		const { classes, signup, login, isAuthenticated } = this.props;
-		const { activeTab } = this.state;
+		const { activeTab, error } = this.state;
 
 		if (isAuthenticated) {
 			return <Redirect to="/chat" />
@@ -64,8 +69,8 @@ class WelcomePage extends React.Component {
 								</Tabs>
 							</AppBar>
 							<div className={classes.tabContent}>
-								{activeTab === 0 && <LoginForm onSubmit={login} />}
-								{activeTab === 1 && <SignupForm onSubmit={signup} />}
+								{activeTab === 0 && <LoginForm onSubmit={login} error={error} />}
+								{activeTab === 1 && <SignupForm onSubmit={signup} error={error} />}
 							</div>
 						</Paper>
 					</Grid>

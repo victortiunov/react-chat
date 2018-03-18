@@ -5,9 +5,9 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 import { recieveAuth } from '../actions';
 
 class PrivateRoute extends React.Component {
-	componentDidMount() {
-		this.props.recieveAuth();
-	}
+	// componentDidMount() {
+	// 	this.props.recieveAuth();
+	// }
 
 	render() {
 		const { component: Component, isAuthenticated, ...rest } = this.props;

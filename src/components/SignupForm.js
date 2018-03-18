@@ -1,9 +1,13 @@
 import React from 'react';
 import { withStyles } from 'material-ui';
 import TextField from 'material-ui/TextField';
+import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
 const styles = theme => ({
+	errorMessage: {
+		color: 'red'
+	},
 	signUpButton: {
 		marginTop: theme.spacing.unit * 2,
 	}
@@ -62,7 +66,7 @@ class SignupForm extends React.Component {
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, error } = this.props;
 		const { username, password, repeatedPassword } = this.state;
 
 		return (
@@ -106,6 +110,7 @@ class SignupForm extends React.Component {
 					onChange={this.handleInputChange}
 					error={!repeatedPassword.isValid}
 				/>
+				<Typography className={classes.errorMessage}>{error}</Typography>
 				<Button
 					fullWidth
 					variant="raised"

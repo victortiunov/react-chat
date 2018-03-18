@@ -14,22 +14,22 @@ export function signup(username, password) {
 			{ method: 'POST' },
 			{ username, password }
 		)
-		.then(json => {
-			if (!json.token) {
-				throw new Error('Token has not been provided!');
-			}
-			
-			localStorage.setItem('token', json.token);
+			.then(json => {
+				if (!json.token) {
+					throw new Error('Token has not been provided!');
+				}
 
-			dispatch({
-				type: types.SIGNUP_SUCCESS,
-				payload: json
+				localStorage.setItem('token', json.token);
+
+				dispatch({
+					type: types.SIGNUP_SUCCESS,
+					payload: json
+				})
 			})
-		})
-		.catch(reason => dispatch({
-			type: types.SIGNUP_FAILURE,
-			payload: reason
-		}))
+			.catch(reason => dispatch({
+				type: types.SIGNUP_FAILURE,
+				payload: reason
+			}))
 	}
 }
 
@@ -44,23 +44,23 @@ export function login(username, password) {
 			null,
 			{ method: 'POST' },
 			{ username, password }
-		 )
-		.then(json => {
-			if (!json.token) {
-				throw new Error('Token has not been provided!');
-			}
-			
-			localStorage.setItem('token', json.token);
+		)
+			.then(json => {
+				if (!json.token) {
+					throw new Error('Token has not been provided!');
+				}
 
-			dispatch({
-				type: types.LOGIN_SUCCESS,
-				payload: json
+				localStorage.setItem('token', json.token);
+
+				dispatch({
+					type: types.LOGIN_SUCCESS,
+					payload: json
+				})
 			})
-		})
-		.catch(reason => dispatch({
-			type: types.LOGIN_FAILURE,
-			payload: reason
-		}))
+			.catch(reason => dispatch({
+				type: types.LOGIN_FAILURE,
+				payload: reason
+			}))
 	}
 }
 
@@ -73,25 +73,29 @@ export function logout() {
 		return callApi(
 			routes.LOGOUT
 		)
-		.then((json) => {
-			localStorage.removeItem('token');
+			.then((json) => {
+				localStorage.removeItem('token');
 
-			dispatch({
-				type: types.LOGOUT_SUCCESS
-			});
-		})
-		.catch((reason) => {
-			dispatch({
-				type: types.LOGOUT_FAILURE,
-				payload: reason
-			});
-		})
+				dispatch({
+					type: types.LOGOUT_SUCCESS
+				});
+			})
+			.catch((reason) => {
+				dispatch({
+					type: types.LOGOUT_FAILURE,
+					payload: reason
+				});
+			})
 	}
 }
 
 export function recieveAuth() {
 	return (dispatch, getState) => {
 		const { token } = getState().auth;
+
+		dispatch({
+			type: types.RECIEVE_AUTH_REQUEST,
+		});
 
 		if (!token) {
 			return dispatch({
@@ -101,17 +105,17 @@ export function recieveAuth() {
 		}
 
 		return callApi(
-			routes.RECIEVE_AUTH,
+			routes.USERS_ME,
 			token
 		)
-		.then(json => dispatch({
+			.then(json => dispatch({
 				type: types.RECIEVE_AUTH_SUCCESS,
 				payload: json
 			})
-		)
-		.catch(reason => dispatch({
-			type: types.RECIEVE_AUTH_FAILURE,
-			payload: reason
-		}))
+			)
+			.catch(reason => dispatch({
+				type: types.RECIEVE_AUTH_FAILURE,
+				payload: reason
+			}))
 	}
 }

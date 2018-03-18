@@ -69,6 +69,23 @@ export function logout() {
 		dispatch({
 			type: types.LOGOUT_REQUEST
 		});
+
+		return callApi(
+			routes.LOGOUT
+		)
+		.then((json) => {
+			localStorage.removeItem('token');
+
+			dispatch({
+				type: types.LOGOUT_SUCCESS
+			});
+		})
+		.catch((reason) => {
+			dispatch({
+				type: types.LOGOUT_FAILURE,
+				payload: reason
+			});
+		})
 	}
 }
 

@@ -43,6 +43,11 @@ class UserMenu extends React.Component {
 		this.setState({ menuElement: null });
 	}
 
+	handleLogout = () => {
+		this.handleClose();
+		this.props.onLogout();
+	}
+
 	toggleModal = () => {
 		this.handleClose();
 		this.setState({ modalView: !this.state.modalView });

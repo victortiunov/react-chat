@@ -25,13 +25,13 @@ const styles = theme => ({
 	}
 });
 
-const ChatHeader = ({ classes }) => (
+const ChatHeader = ({ classes, onLogout }) => (
 	< AppBar color="primary" className={classes.appBar} >
 		<Toolbar>
 			<Typography variant="title" className={classes.appBarTitle}>
 				DogeCodes React Chat
          </Typography>
-			<UserMenu user={user}/>
+			<UserMenu user={user} onLogout={onLogout}/>
 		</Toolbar>
 	</AppBar >
 );

@@ -1,6 +1,7 @@
 export const ROOT_ROUTE = 'http://localhost:8000/v1/';
 
 export const LOGIN = 'login';
+export const LOGOUT = 'logout';
 export const SIGNUP = 'signup';
 export const RECIEVE_AUTH = 'users/me';
 

@@ -6,7 +6,8 @@ import ChatPage from '../components/ChatPage';
 
 const mapStateToProps = state => {
 	return {
-		chats: fromChats.getByIds(state.chats, state.chats.allIds),
+		myChats: fromChats.getByIds(state.chats, state.chats.myIds),
+		allChats: fromChats.getByIds(state.chats, state.chats.allIds),
 		user: state.auth.user
 	}
 };

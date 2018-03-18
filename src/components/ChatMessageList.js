@@ -3,13 +3,14 @@ import { withStyles } from 'material-ui/styles';
 import ChatMessage from './ChatMessage';
 
 const styles = theme => ({
+	// todo: resolve style with width
 	messagesWrapper: {
-		overflowX: 'scroll',
+		overflowY: 'scroll',
 		height: `calc(100% - 60px)`,
 		width: '100%',
 		paddingTop: theme.spacing.unit * 3,
 		marginBottom: '70px',
-	},
+	}
 });
 
 class ChatMessageList extends React.Component {
@@ -29,12 +30,12 @@ class ChatMessageList extends React.Component {
 	}
 
 	render() {
-		const { classes, messages } = this.props;
+		const { classes, user, messages } = this.props;
 
 		return (
-			<div className={classes.messagesWrapper} ref="messagesWrapper">
+			<div className={classes.messagesWrapper} ref="messagesWrapper" id='messages-wrapper'>
 				{messages && messages.map((message) => (
-					<ChatMessage key={message._id} {...message} />
+					<ChatMessage key={message._id} user={user} {...message} />
 				))}
 			</div>
 		);

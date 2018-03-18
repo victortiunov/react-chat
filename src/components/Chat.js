@@ -11,16 +11,16 @@ const styles = theme => ({
 		paddingTop: '64px',
 		height: '100%',
 		overflow: 'hidden',
-	},
+	}
 });
 
 class Chat extends React.Component {
 	render() {
-		const { classes, activeChat, sendMessage } = this.props;
+		const { classes, user, activeChat, sendMessage } = this.props;
 
 		return (
 			<main className={classes.chatLayout}>
-				<ChatMessageList messages={(activeChat ? activeChat.messages : [])} />
+				<ChatMessageList user={user} messages={(activeChat ? activeChat.messages : [])} />
 				<MessageInput sendMessage={(message) => sendMessage(activeChat._id, message)} />
 			</main>
 		);

@@ -32,7 +32,7 @@ class ChatPage extends React.Component {
 			<div className={classes.root}>
 				<ChatHeader user={user} editUser={editUser} onLogout={logout} />
 				<Sidebar myChats={myChats} allChats={allChats} createChat={createChat} setActiveChat={setActiveChat} />
-				<Chat activeChat={activeChat} sendMessage={sendMessage} />
+				<Chat user={user} activeChat={activeChat} sendMessage={sendMessage} />
 			</div>
 		)
 	}

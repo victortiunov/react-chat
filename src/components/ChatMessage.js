@@ -26,11 +26,11 @@ const styles = theme => ({
 	messageFromMe: {
 		marginRight: theme.spacing.unit * 2,
 		backgroundColor: '#e6dcff'
-	},
+	}
 });
 
-const ChatMessage = ({ classes, sender, content }) => {
-	const isMessageFromMe = sender._id === '5a963a8824614817d80c310b';
+const ChatMessage = ({ classes, user, sender, content }) => {
+	const isMessageFromMe = sender._id === user._id;
 	const senderName = userName(sender.username, sender.firstName, sender.lastName);
 
 	const userAvatar = (

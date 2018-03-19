@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import moment from 'moment';
 import { withStyles } from 'material-ui';
 import Typography from 'material-ui/Typography';
 import Avatar from './Avatar';
@@ -29,7 +30,7 @@ const styles = theme => ({
 	}
 });
 
-const ChatMessage = ({ classes, user, sender, content }) => {
+const ChatMessage = ({ classes, user, sender, content, createdAt }) => {
 	const isMessageFromMe = sender._id === user._id;
 	const senderName = userName(sender.username, sender.firstName, sender.lastName);
 
@@ -54,6 +55,9 @@ const ChatMessage = ({ classes, user, sender, content }) => {
 				</Typography>
 				<Typography variant="body1">
 					{content}
+					<Typography variant="caption" component="span">
+						{moment(createdAt).fromNow()}
+					</Typography>
 				</Typography>
 			</Paper>
 			{isMessageFromMe && userAvatar}

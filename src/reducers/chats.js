@@ -11,10 +11,11 @@ const initialState = {
 const activeId = (state = initialState.activeId, action) => {
 	switch (action.type) {
 		case types.SET_ACTIVE_CHAT:
+		case types.JOIN_CHAT_SUCCESS:
 		case types.CREATE_CHAT_SUCCESS:
 			return action.payload.chat._id;
-		
 		case types.UNSET_ACTIVE_CHAT:
+		case types.DELETE_CHAT_SUCCESS:
 			return '';
 
 		default:
@@ -27,7 +28,9 @@ const allIds = (state = initialState.allIds, action) => {
 			return action.payload.chats.map(getChatId);
 		case types.CREATE_CHAT_SUCCESS:
 			return [...state, getChatId(action.payload.chat)];
-		
+		case types.DELETE_CHAT_SUCCESS:
+			return state.filter(chatId => chatId !== getChatId(action.payload.chat));
+
 		default:
 			return state;
 	}
@@ -37,7 +40,11 @@ const myIds = (state = initialState.myIds, action) => {
 		case types.FETCH_MY_CHATS_SUCCESS:
 			return action.payload.chats.map(getChatId);
 		case types.CREATE_CHAT_SUCCESS:
+		case types.JOIN_CHAT_SUCCESS:
 			return [...state, getChatId(action.payload.chat)];
+		case types.LEAVE_CHAT_SUCCESS:
+		case types.DELETE_CHAT_SUCCESS:
+			return state.filter(chatId => chatId !== getChatId(action.payload.chat));
 
 		default:
 			return state;
@@ -55,16 +62,14 @@ const byIds = (state = initialState.byIds, action) => {
 				}), {})
 			}
 		case types.FETCH_CHAT_SUCCESS:
-			return {
-				...state,
-				[action.payload.chat._id]: action.payload.chat
-			}
 		case types.CREATE_CHAT_SUCCESS:
+		case types.LEAVE_CHAT_SUCCESS:
+		case types.JOIN_CHAT_SUCCESS:
 			return {
 				...state,
-				[action.payload.chat._id]: action.payload.chat
+				[getChatId(action.payload.chat)]: action.payload.chat
 			}
-		
+
 		default:
 			return state;
 	}
@@ -76,4 +81,4 @@ export default combineReducers({
 
 export const getChatId = (chat) => chat._id;
 export const getByIds = (state, ids) => ids.map(id => state.byIds[id]);
-export const getById = (state, id) => {debugger;return byIds[id]};
+export const getById = (state, id) => state.byIds[id];

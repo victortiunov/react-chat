@@ -1,8 +1,8 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
-//import Paper from 'material-ui/Paper';
 import { Input, Grid, Button } from 'material-ui';
 import SendIcon from 'material-ui-icons/Send';
+import Paper from 'material-ui/Paper';
 
 const styles = theme => ({
 	messageInputWrapper: {
@@ -17,6 +17,9 @@ const styles = theme => ({
 	},
 	messageInput: {
 		marginTop: 15
+	},
+	joinPaper: {
+		padding: theme.spacing.unit * 2
 	}
 });
 
@@ -40,37 +43,50 @@ class MessageInput extends React.Component {
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, user, onJoinClick } = this.props;
 		const { message } = this.state;
 
 		return (
 			<div className={classes.messageInputWrapper}>
-				<form
-					className={classes.messageForm}
-					onSubmit={this.handleSubmit}
-				>
-					<Grid container justify="center">
-						<Grid item xs={8}>
-							<Input
-								className={classes.messageInput}
-								fullWidth
-								value={message}
-								placeholder="Type your message…"
-								onChange={this.handleMessageChange}
-							/>
+				{ user.isChatMember ? (
+					<form
+						className={classes.messageForm}
+						onSubmit={this.handleSubmit}
+					>
+						<Grid container justify="center">
+							<Grid item xs={8}>
+								<Input
+									className={classes.messageInput}
+									fullWidth
+									value={message}
+									placeholder="Type your message…"
+									onChange={this.handleMessageChange}
+								/>
+							</Grid>
+							<Grid item className={classes.messageButton}>
+							<Button
+								className={classes.messageButton}
+								type="submit"
+								variant="fab"
+								color="primary"
+							>
+								<SendIcon/>
+							</Button>
+							</Grid>
 						</Grid>
-						<Grid item className={classes.messageButton}>
+					</form>
+				) : (
+					<Paper className={classes.joinPaper} elevation={6}>
 						<Button
-							className={classes.messageButton}
-							type="submit"
-							variant="fab"
+							fullWidth
+							variant="raised"
 							color="primary"
+							onClick={onJoinClick}
 						>
-							<SendIcon/>
+							Join
 						</Button>
-						</Grid>
-					</Grid>
-				</form>
+					 </Paper>
+				)}
 			</div>
 		);
 	}

@@ -3,6 +3,8 @@ import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
+import Avatar from './Avatar';
+import ChatMenu from './ChatMenu';
 import UserMenu from './UserMenu';
 
 const styles = theme => ({
@@ -20,14 +22,28 @@ const styles = theme => ({
 
 class ChatHeader extends React.Component {
 	render() {
-		const { classes, user, editUser, onLogout } = this.props;
+		const { classes, user, editUser, onLogout, activeChat, leaveChat, deleteChat } = this.props;
 
 		return (
 			< AppBar color="primary" className={classes.appBar} >
 				<Toolbar>
-					<Typography variant="title" className={classes.appBarTitle}>
-						DogeCodes React Chat
-         		</Typography>
+					{activeChat ? (
+						<React.Fragment>
+							<Avatar colorFrom={activeChat._id}>{activeChat.title}</Avatar>
+							<Typography variant="title" className={classes.appBarTitle}>
+								{activeChat.title}
+								<ChatMenu
+									user={user}
+									onLeaveClick={() => leaveChat(activeChat._id)}
+									onDeleteClick={() => deleteChat(activeChat._id)}
+								/>
+							</Typography>
+						</React.Fragment>
+					) : (
+						<Typography variant="title" className={classes.appBarTitle}>
+							DogeCodes React Chat
+						</Typography>
+					)}
 					<UserMenu user={user} editUser={editUser} onLogout={onLogout} />
 				</Toolbar>
 			</AppBar >

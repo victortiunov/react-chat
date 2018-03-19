@@ -119,8 +119,6 @@ export function createChat(chatTitle) {
 					payload: { chat },
 				});
 
-				// todo: set active chat
-
 				return chat;
 			})
 			.catch(reason =>
@@ -159,4 +157,99 @@ export function sendMessage(chatId, message) {
 				});
 			});
 	}
+}
+
+export function leaveChat(chatId) {
+	return (dispatch, getState) => {
+		const { token } = getState().auth;
+
+		dispatch({
+			type: types.LEAVE_CHAT_REQUEST,
+			payload: { chatId }
+		});
+
+		return callApi(
+			`/chats/${chatId}/leave`
+			, token
+		)
+			.then((json) => {
+				dispatch({
+					type: types.LEAVE_CHAT_SUCCESS,
+					payload: json
+				});
+
+				dispatch({
+					type: types.UNSET_ACTIVE_CHAT
+				});
+			})
+			.catch((reason) => {
+				dispatch({
+					type: types.LEAVE_CHAT_FAILURE,
+					payload: reason
+				});
+			});
+	};
+}
+
+export function deleteChat(chatId) {
+	return (dispatch, getState) => {
+		const { token } = getState().auth;
+
+		dispatch({
+			type: types.DELETE_CHAT_REQUEST,
+			payload: { chatId }
+		});
+
+		return callApi(
+			`${routes.CHATS}\\${chatId}`,
+			token,
+			{ method: 'DELETE' }
+		)
+			.then((json) => {
+				dispatch({
+					type: types.DELETE_CHAT_SUCCESS,
+					payload: json
+				});
+
+				dispatch({
+					type: types.UNSET_ACTIVE_CHAT
+				});
+			})
+			.catch((reason) => {
+				dispatch({
+					type: types.DELETE_CHAT_FAILURE,
+					payload: reason
+				});
+			});
+	};
+}
+
+export function joinChat(chatId) {
+	return (dispatch, getState) => {
+		const { token } = getState().auth;
+
+		dispatch({
+			type: types.JOIN_CHAT_REQUEST,
+			payload: { chatId }
+		});
+
+		return callApi(
+			`/chats/${chatId}/join`,
+			token
+		)
+			.then((json) => {
+				dispatch({
+					type: types.JOIN_CHAT_SUCCESS,
+					payload: json
+				});
+
+				dispatch(setActiveChat(chatId));
+			})
+			.catch((reason) => {
+				dispatch({
+					type: types.JOIN_CHAT_FAILURE,
+					payload: reason
+				});
+			});
+	};
 }

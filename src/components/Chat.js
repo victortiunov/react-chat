@@ -16,12 +16,18 @@ const styles = theme => ({
 
 class Chat extends React.Component {
 	render() {
-		const { classes, user, activeChat, sendMessage } = this.props;
+		const { classes, user, activeChat, sendMessage, joinChat } = this.props;
 
 		return (
 			<main className={classes.chatLayout}>
-				<ChatMessageList user={user} messages={(activeChat ? activeChat.messages : [])} />
-				<MessageInput sendMessage={(message) => sendMessage(activeChat._id, message)} />
+				{ activeChat ? (
+					<React.Fragment>
+						<ChatMessageList user={user} messages={activeChat.messages} />
+						<MessageInput sendMessage={(message) => sendMessage(activeChat._id, message)} user={user} onJoinClick={() => joinChat(activeChat._id)} />
+					</React.Fragment>
+				) : (
+					<div></div>
+				)}
 			</main>
 		);
 	}

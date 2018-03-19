@@ -3,7 +3,6 @@ import { withStyles } from 'material-ui/styles';
 import ChatMessage from './ChatMessage';
 
 const styles = theme => ({
-	// todo: resolve style with width
 	messagesWrapper: {
 		overflowY: 'scroll',
 		height: `calc(100% - 60px)`,
@@ -33,7 +32,7 @@ class ChatMessageList extends React.Component {
 		const { classes, user, messages } = this.props;
 
 		return (
-			<div className={classes.messagesWrapper} ref="messagesWrapper" id='messages-wrapper'>
+			<div className={classes.messagesWrapper} ref="messagesWrapper">
 				{messages && messages.map((message) => (
 					<ChatMessage key={message._id} user={user} {...message} />
 				))}

@@ -24,7 +24,7 @@ class Chat extends React.Component {
 				{ activeChat ? (
 					<React.Fragment>
 						<ChatMessageList user={user} messages={activeChat.messages} />
-						<MessageInput sendMessage={(message) => sendMessage(activeChat._id, message)} user={user} onJoinClick={() => joinChat(activeChat._id)} />
+						<MessageInput sendMessage={sendMessage} user={user} onJoinClick={() => joinChat(activeChat._id)} />
 					</React.Fragment>
 				) : (
 					<div></div>

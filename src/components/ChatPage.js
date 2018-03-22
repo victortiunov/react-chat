@@ -16,13 +16,28 @@ const styles = theme => ({
 
 class ChatPage extends React.Component {
 	componentDidMount() {
-		const { recieveAuth, fetchAllChats, fetchMyChats } = this.props;
+		const { recieveAuth, fetchAllChats, fetchMyChats, socketsConnect } = this.props;
 
 		Promise.all([
 			recieveAuth(),
 			fetchAllChats(),
 			fetchMyChats()
-		]);
+		])
+			.then(() => {
+				socketsConnect();
+			});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const prevChat = this.props.activeChat;
+		const nextChat = nextProps.activeChat;
+		
+		if (nextChat) {
+			if (prevChat && prevChat._id !== nextChat._id) {
+				this.props.unmountChat(prevChat._id)
+			}
+			this.props.mountChat(nextChat._id);
+		}
 	}
 
 	render() {

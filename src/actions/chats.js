@@ -129,36 +129,6 @@ export function createChat(chatTitle) {
 	};
 }
 
-export function sendMessage(chatId, message) {
-	return (dispatch, getState) => {
-		const { token } = getState().auth;
-
-		dispatch({
-			type: types.SEND_MESSAGE_REQUEST
-		});
-
-		return callApi(
-			`${routes.CHATS}\\${chatId}`,
-			token,
-			{ method: 'POST' },
-			{ data: { content: message } }
-		)
-			.then((json) => {
-				dispatch({
-					type: types.SEND_MESSAGE_SUCCESS
-				});
-
-				dispatch(fetchChat(chatId));
-			})
-			.catch((reason) => {
-				dispatch({
-					type: types.SEND_MESSAGE_FAILURE,
-					payload: reason
-				});
-			});
-	}
-}
-
 export function leaveChat(chatId) {
 	return (dispatch, getState) => {
 		const { token } = getState().auth;

@@ -1,4 +1,4 @@
-import * as types from '../constants/chats';
+import * as types from '../constants';
 import { combineReducers } from 'redux';
 
 const initialState = {
@@ -17,6 +17,8 @@ const activeId = (state = initialState.activeId, action) => {
 		case types.UNSET_ACTIVE_CHAT:
 		case types.DELETE_CHAT_SUCCESS:
 			return '';
+		case types.RECIEVE_DELETED_CHAT:
+			return state === action.payload.chatId ? '' : state;
 
 		default:
 			return state;
@@ -27,8 +29,10 @@ const allIds = (state = initialState.allIds, action) => {
 		case types.FETCH_ALL_CHATS_SUCCESS:
 			return action.payload.chats.map(getChatId);
 		case types.CREATE_CHAT_SUCCESS:
+		case types.RECIEVE_NEW_CHAT:
 			return [...state, getChatId(action.payload.chat)];
 		case types.DELETE_CHAT_SUCCESS:
+		case types.RECIEVE_DELETED_CHAT:
 			return state.filter(chatId => chatId !== getChatId(action.payload.chat));
 
 		default:
@@ -44,6 +48,7 @@ const myIds = (state = initialState.myIds, action) => {
 			return [...state, getChatId(action.payload.chat)];
 		case types.LEAVE_CHAT_SUCCESS:
 		case types.DELETE_CHAT_SUCCESS:
+		case types.RECIEVE_DELETED_CHAT:
 			return state.filter(chatId => chatId !== getChatId(action.payload.chat));
 
 		default:
@@ -65,10 +70,17 @@ const byIds = (state = initialState.byIds, action) => {
 		case types.CREATE_CHAT_SUCCESS:
 		case types.LEAVE_CHAT_SUCCESS:
 		case types.JOIN_CHAT_SUCCESS:
+		case types.RECIEVE_NEW_CHAT:
 			return {
 				...state,
 				[getChatId(action.payload.chat)]: action.payload.chat
 			}
+		case types.DELETE_CHAT_SUCCESS:
+		case types.RECIEVE_DELETED_CHAT: {
+			const newState = { ...state };
+			delete newState[getChatId(action.payload.chat)];
+			return newState;
+		}
 
 		default:
 			return state;

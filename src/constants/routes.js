@@ -1,4 +1,5 @@
 export const ROOT_ROUTE = 'http://localhost:8000/v1/';
+export const SOCKET_ROUTE = 'ws://localhost:8000/';
 
 export const LOGIN = 'login';
 export const LOGOUT = 'logout';

@@ -1,9 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
+import moment from 'moment';
 import { withStyles } from 'material-ui';
 import Typography from 'material-ui/Typography';
 import Avatar from './Avatar';
 import Paper from 'material-ui/Paper';
+
+import userName from '../utils/user-name';
+import getColor from '../utils/color-from';
 
 const styles = theme => ({
 	messageWrapper: {
@@ -25,14 +29,40 @@ const styles = theme => ({
 		marginRight: theme.spacing.unit * 2,
 		backgroundColor: '#e6dcff'
 	},
+	statusMessage: {
+		width: '100%',
+		textAlign: 'center'
+	},
+	statusMessageUser: {
+		display: 'inline',
+	}
 });
 
-const ChatMessage = ({ classes, sender, content }) => {
-	const isMessageFromMe = sender === 'me';
+const ChatMessage = ({ classes, user, sender, content, createdAt, statusMessage }) => {
+	const isMessageFromMe = sender._id === user._id;
+	const senderName = userName(sender.username, sender.firstName, sender.lastName);
+
+	if (statusMessage) {
+		return (
+			<div className={classes.messageWrapper}>
+				<Typography className={classes.statusMessage}>
+					<Typography
+						className={classes.statusMessageUser}
+						style={{ color: getColor(senderName) }}
+					>
+						{senderName}
+					</Typography>
+					<Typography variant="caption" component="span">
+						{content} {moment(createdAt).fromNow()}
+					</Typography>
+				</Typography>
+			</div>
+		)
+	}
 
 	const userAvatar = (
-		<Avatar colorFrom={sender}>
-			{sender}
+		<Avatar colorFrom={senderName}>
+			{senderName}
 		</Avatar>
 	);
 
@@ -47,10 +77,13 @@ const ChatMessage = ({ classes, sender, content }) => {
 				isMessageFromMe && classes.messageFromMe
 			)}>
 				<Typography variant="caption">
-					{sender}
+					{senderName}
 				</Typography>
 				<Typography variant="body1">
 					{content}
+					<Typography variant="caption" component="span">
+						{moment(createdAt).fromNow()}
+					</Typography>
 				</Typography>
 			</Paper>
 			{isMessageFromMe && userAvatar}

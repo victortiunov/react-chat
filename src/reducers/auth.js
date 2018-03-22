@@ -24,9 +24,6 @@ export default function auth(state = initialState, action) {
 				isAuthenticated: true,
 				user: action.payload.user
 			}
-		case types.SIGNUP_FAILURE:
-		case types.LOGIN_FAILURE:
-		case types.RECIEVE_AUTH_FAILURE:
 		case types.LOGOUT_SUCCESS:
 			return {
 				...state,
@@ -34,6 +31,12 @@ export default function auth(state = initialState, action) {
 				user: null,
 				token: ''
 			};
+		case types.EDIT_USER_SUCCESS:
+			return {
+				...state,
+				user: action.payload.user
+			};
+
 		default:
 			return state;
 	}

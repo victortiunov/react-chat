@@ -25,17 +25,22 @@ class WelcomePage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeTab: 0
+			activeTab: 0,
+			error: props.error
 		}
 	}
 
-	handleTabChage = (event, value) => {
-		this.setState({ activeTab: value });
+	componentWillReceiveProps(nextProps) {
+		this.setState({ error: nextProps.error });
+	}
+
+	handleTabChange = (event, value) => {
+		this.setState({ activeTab: value, error: '' });
 	}
 
 	render() {
-		const { classes, signup, login, isAuthenticated } = this.props;
-		const { activeTab } = this.state;
+		const { classes, signup, login, isAuthenticated, isFetching } = this.props;
+		const { activeTab, error } = this.state;
 
 		if (isAuthenticated) {
 			return <Redirect to="/chat" />
@@ -56,16 +61,16 @@ class WelcomePage extends React.Component {
 							<AppBar position="static" color="default">
 								<Tabs
 									value={activeTab}
-									onChange={this.handleTabChage}
+									onChange={this.handleTabChange}
 									fullWidth
 								>
-									<Tab label="Login" />
-									<Tab label="Signup" />
+									<Tab label="Login" disabled={isFetching} />
+									<Tab label="Signup" disabled={isFetching} />
 								</Tabs>
 							</AppBar>
 							<div className={classes.tabContent}>
-								{activeTab === 0 && <LoginForm onSubmit={login} />}
-								{activeTab === 1 && <SignupForm onSubmit={signup} />}
+								{activeTab === 0 && <LoginForm onSubmit={login} error={error} isFetching={isFetching} />}
+								{activeTab === 1 && <SignupForm onSubmit={signup} error={error} isFetching={isFetching} />}
 							</div>
 						</Paper>
 					</Grid>

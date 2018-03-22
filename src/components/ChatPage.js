@@ -3,8 +3,7 @@ import { withStyles } from 'material-ui';
 import Sidebar from './Sidebar';
 import ChatHeader from './ChatHeader';
 import Chat from './Chat';
-
-import { chats, messages } from '../mock-data';
+import ErrorMessage from './ErrorMessage';
 
 const styles = theme => ({
 	root: {
@@ -12,16 +11,76 @@ const styles = theme => ({
 		display: 'flex',
 		width: '100%',
 		height: '100%',
-		backgroundColor: theme.palette.background.default,
+		backgroundColor: theme.palette.background.default
 	}
 });
 
-const ChatPage = ({ classes }) => (
-	<div className={classes.root}>
-		<ChatHeader />
-		<Sidebar chats={chats} />
-		<Chat messages={messages} />
-	</div>
-);
+class ChatPage extends React.Component {
+	componentDidMount() {
+		const { recieveAuth, fetchAllChats, fetchMyChats, socketsConnect } = this.props;
+
+		Promise.all([
+			recieveAuth(),
+			fetchAllChats(),
+			fetchMyChats()
+		])
+			.then(() => {
+				socketsConnect();
+			});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const prevChat = this.props.activeChat;
+		const nextChat = nextProps.activeChat;
+		
+		if (nextChat) {
+			if (prevChat && prevChat._id !== nextChat._id) {
+				this.props.unmountChat(prevChat._id)
+			}
+			this.props.mountChat(nextChat._id);
+		}
+	}
+
+	render() {
+		const {
+			classes,
+			activeChat, myChats, allChats,
+			createChat, leaveChat, deleteChat, joinChat, setActiveChat,
+			sendMessage,
+			user, editUser, logout,
+			error,
+			isConnected
+		} = this.props;
+
+		return (
+			<div className={classes.root}>
+				<ChatHeader
+					isConnected={isConnected}
+					user={user}
+					editUser={editUser}
+					onLogout={logout}
+					activeChat={activeChat}
+					leaveChat={leaveChat}
+					deleteChat={deleteChat}
+				/>
+				<Sidebar
+					isConnected={isConnected}
+					myChats={myChats}
+					allChats={allChats}
+					createChat={createChat}
+					setActiveChat={setActiveChat}
+				/>
+				<Chat
+					isConnected={isConnected}
+					user={user}
+					activeChat={activeChat}
+					sendMessage={sendMessage}
+					joinChat={joinChat}
+				/>
+				<ErrorMessage error={error} />
+			</div>
+		)
+	}
+}
 
 export default withStyles(styles) (ChatPage);

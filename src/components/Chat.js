@@ -10,15 +10,36 @@ const styles = theme => ({
 		alignItems: 'center',
 		paddingTop: '64px',
 		height: '100%',
+		width: '100%',
 		overflow: 'hidden',
-	},
+	}
 });
 
-const Chat = ({ classes, messages }) => (
-	<main className={classes.chatLayout}>
-		<ChatMessageList messages={messages} />
-		<MessageInput />
-	</main>
-);
+class Chat extends React.Component {
+	render() {
+		const { classes, user, activeChat, sendMessage, joinChat, isConnected } = this.props;
+
+		return (
+			<main className={classes.chatLayout}>
+				{ activeChat ? (
+					<React.Fragment>
+						<ChatMessageList
+							user={user}
+							messages={activeChat.messages}
+						/>
+						<MessageInput
+							sendMessage={sendMessage}
+							user={user}
+							onJoinClick={() => joinChat(activeChat._id)}
+							disabled={!isConnected}
+						/>
+					</React.Fragment>
+				) : (
+					<div></div>
+				)}
+			</main>
+		);
+	}
+}
 
 export default withStyles(styles)(Chat);

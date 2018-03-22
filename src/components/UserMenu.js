@@ -48,7 +48,7 @@ class UserMenu extends React.Component {
 	}
 
 	handleClick = (e) => {
-		this.setState({ menuElement: e.currentTarget });
+		this.setState({ menuElement: this.props.disabled ? null : e.currentTarget });
 	}
 
 	handleClose = () => {

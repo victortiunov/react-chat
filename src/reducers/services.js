@@ -20,7 +20,8 @@ const initialState = {
 	error: {
 		auth: '',
 		chats: ''
-	}
+	},
+	isConnected: false
 }
 
 export const isFetching = (state = initialState.isFetching, action) => {
@@ -129,6 +130,19 @@ export const errors = (state = initialState.error, action) => {
 		case types.SOCKETS_CONNECTION_SUCCESS:
 		case types.EDIT_USER_SUCCESS:
 			return { ...state, chat: '' };
+
+		default:
+			return state;
+	}
+};
+
+export const isConnected = (state = initialState.isConnected, action) => {
+	switch (action.type) {
+		case types.SOCKETS_CONNECTION_MISSING:
+		case types.SOCKETS_CONNECTION_FAILURE:
+			return false;
+		case types.SOCKETS_CONNECTION_SUCCESS:
+			return true;
 		
 		default:
 			return state;
@@ -136,5 +150,5 @@ export const errors = (state = initialState.error, action) => {
 };
 
 export default combineReducers({
-	isFetching, errors
+	isFetching, errors, isConnected
 })

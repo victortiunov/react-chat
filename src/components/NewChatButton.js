@@ -80,7 +80,7 @@ class NewChatButton extends React.Component {
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, disabled } = this.props;
 		const { modalView, chatTitle } = this.state;
 
 		return (
@@ -90,6 +90,7 @@ class NewChatButton extends React.Component {
 					color="primary"
 					className={classes.newChatButton}
 					onClick={this.toggleModal}
+					disabled={disabled}
 				>
 					<AddIcon />
 				</Button>

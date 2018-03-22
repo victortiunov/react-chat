@@ -12,9 +12,14 @@ class ChatListItem extends React.Component {
 
 	render() {
 		const title = this.props.title ? this.props.title : "No Title";
+		const { disabled } = this.props;
 
 		return(
-			<ListItem button onClick={this.handleClick}>
+			<ListItem
+				button
+				onClick={this.handleClick}
+				disabled={disabled}
+			>
 				<Avatar colorFrom={title}>{title}</Avatar>
 				<ListItemText primary={title} />
 			</ListItem>

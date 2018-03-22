@@ -21,7 +21,8 @@ const mapStateToProps = state => {
 			isCreator: fromState.isCreator(state, activeChat),
 			isChatMember: fromState.isChatMember(state, activeChat)
 		},
-		error: state.services.errors.chat
+		error: state.services.errors.chat,
+		isConnected: state.services.isConnected
 	}
 };
 

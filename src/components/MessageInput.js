@@ -43,7 +43,7 @@ class MessageInput extends React.Component {
 	}
 
 	render() {
-		const { classes, user, onJoinClick } = this.props;
+		const { classes, user, onJoinClick, disabled } = this.props;
 		const { message } = this.state;
 
 		return (
@@ -61,6 +61,7 @@ class MessageInput extends React.Component {
 									value={message}
 									placeholder="Type your message…"
 									onChange={this.handleMessageChange}
+									disabled={disabled}
 								/>
 							</Grid>
 							<Grid item className={classes.messageButton}>
@@ -69,6 +70,7 @@ class MessageInput extends React.Component {
 								type="submit"
 								variant="fab"
 								color="primary"
+								disabled={disabled}
 							>
 								<SendIcon/>
 							</Button>
@@ -82,6 +84,7 @@ class MessageInput extends React.Component {
 							variant="raised"
 							color="primary"
 							onClick={onJoinClick}
+							disabled={disabled}
 						>
 							Join
 						</Button>

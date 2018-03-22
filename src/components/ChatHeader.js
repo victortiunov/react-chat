@@ -22,7 +22,7 @@ const styles = theme => ({
 
 class ChatHeader extends React.Component {
 	render() {
-		const { classes, user, editUser, onLogout, activeChat, leaveChat, deleteChat } = this.props;
+		const { classes, user, editUser, onLogout, activeChat, leaveChat, deleteChat, isConnected } = this.props;
 
 		return (
 			< AppBar color="primary" className={classes.appBar} >
@@ -36,6 +36,7 @@ class ChatHeader extends React.Component {
 									user={user}
 									onLeaveClick={() => leaveChat(activeChat._id)}
 									onDeleteClick={() => deleteChat(activeChat._id)}
+									disabled={!isConnected}
 								/>
 							</Typography>
 						</React.Fragment>
@@ -44,7 +45,7 @@ class ChatHeader extends React.Component {
 							DogeCodes React Chat
 						</Typography>
 					)}
-					<UserMenu user={user} editUser={editUser} onLogout={onLogout} />
+					<UserMenu user={user} editUser={editUser} onLogout={onLogout} disabled={!isConnected} />
 				</Toolbar>
 			</AppBar >
 		)

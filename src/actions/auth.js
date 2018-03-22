@@ -66,7 +66,7 @@ export function login(username, password) {
 
 export function logout() {
 	return (dispatch, getState) => {
-		const { isFetching } = getState.services;
+		const { isFetching } = getState().services;
 
 		if (isFetching.logout) {
 			return Promise.resolve();

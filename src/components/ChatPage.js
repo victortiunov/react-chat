@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui';
 import Sidebar from './Sidebar';
 import ChatHeader from './ChatHeader';
 import Chat from './Chat';
+import ErrorMessage from './ErrorMessage';
 
 const styles = theme => ({
 	root: {
@@ -41,13 +42,38 @@ class ChatPage extends React.Component {
 	}
 
 	render() {
-		const { classes, activeChat, myChats, allChats, createChat, leaveChat, deleteChat, joinChat, sendMessage, setActiveChat, user, editUser, logout } = this.props;
+		const {
+			classes,
+			activeChat, myChats, allChats,
+			createChat, leaveChat, deleteChat, joinChat, setActiveChat,
+			sendMessage,
+			user, editUser, logout,
+			error
+		} = this.props;
 
 		return (
 			<div className={classes.root}>
-				<ChatHeader user={user} editUser={editUser} onLogout={logout} activeChat={activeChat} leaveChat={leaveChat} deleteChat={deleteChat} />
-				<Sidebar myChats={myChats} allChats={allChats} createChat={createChat} setActiveChat={setActiveChat} />
-				<Chat user={user} activeChat={activeChat} sendMessage={sendMessage} joinChat={joinChat} />
+				<ChatHeader
+					user={user}
+					editUser={editUser}
+					onLogout={logout}
+					activeChat={activeChat}
+					leaveChat={leaveChat}
+					deleteChat={deleteChat}
+				/>
+				<Sidebar
+					myChats={myChats}
+					allChats={allChats}
+					createChat={createChat}
+					setActiveChat={setActiveChat}
+				/>
+				<Chat
+					user={user}
+					activeChat={activeChat}
+					sendMessage={sendMessage}
+					joinChat={joinChat}
+				/>
+				<ErrorMessage error={error} />
 			</div>
 		)
 	}

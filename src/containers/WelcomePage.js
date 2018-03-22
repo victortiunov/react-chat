@@ -5,7 +5,8 @@ import WelcomePage from '../components/WelcomePage';
 
 const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated,
-	error: state.auth.error
+	error: state.auth.error,
+	isFetching: state.services.isFetching.login || state.services.isFetching.signup
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

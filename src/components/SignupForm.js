@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from 'material-ui';
 import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
+import { LinearProgress } from 'material-ui/Progress';
 import Button from 'material-ui/Button';
 
 const styles = theme => ({
@@ -66,7 +67,7 @@ class SignupForm extends React.Component {
 	}
 
 	render() {
-		const { classes, error } = this.props;
+		const { classes, error, isFetching } = this.props;
 		const { username, password, repeatedPassword } = this.state;
 
 		return (
@@ -83,6 +84,7 @@ class SignupForm extends React.Component {
 					value={username.value}
 					onChange={this.handleInputChange}
 					error={!username.isValid}
+					disabled={isFetching}
 				/>
 				<TextField
 					required
@@ -96,6 +98,7 @@ class SignupForm extends React.Component {
 					value={password.value}
 					onChange={this.handleInputChange}
 					error={!password.isValid}
+					disabled={isFetching}
 				/>
 				<TextField
 					required
@@ -109,14 +112,16 @@ class SignupForm extends React.Component {
 					value={repeatedPassword.value}
 					onChange={this.handleInputChange}
 					error={!repeatedPassword.isValid}
+					disabled={isFetching}
 				/>
-				<Typography className={classes.errorMessage}>{error}</Typography>
+				{ isFetching ? <LinearProgress mode="indeterminate" /> : <Typography className={classes.errorMessage}>{error}</Typography> }
 				<Button
 					fullWidth
 					variant="raised"
 					type="submit"
 					color="primary"
 					className={classes.signUpButton}
+					disabled={isFetching}
 				>
 					Signup
         		</Button>

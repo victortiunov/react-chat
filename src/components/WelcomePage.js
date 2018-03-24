@@ -12,8 +12,7 @@ import SignupForm from './SignupForm';
 
 const styles = theme => ({
 	paper: {
-		// eslint-disable-next-line
-		marginTop: 64 + theme.spacing.unit * 3,
+		marginTop: 64 + (theme.spacing.unit * 3),
 		width: 500,
 	},
 	tabContent: {

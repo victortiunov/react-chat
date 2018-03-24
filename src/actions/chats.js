@@ -255,7 +255,7 @@ export function joinChat(chatId) {
 					payload: json
 				});
 
-				dispatch(setActiveChat(chatId));
+				dispatch(fetchChat(chatId));
 			})
 			.catch((reason) => {
 				dispatch({

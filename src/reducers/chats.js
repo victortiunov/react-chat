@@ -18,7 +18,7 @@ const activeId = (state = initialState.activeId, action) => {
 		case types.DELETE_CHAT_SUCCESS:
 			return '';
 		case types.RECIEVE_DELETED_CHAT:
-			return state === action.payload.chatId ? '' : state;
+			return state === getChatId(action.payload.chat) ? '' : state;
 
 		default:
 			return state;

@@ -1,9 +1,14 @@
 import React from 'react';
+import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from './Avatar';
 
-const styles = theme => ({});
+const styles = theme => ({
+	activeChat: {
+		backgroundColor: "lightcyan"
+	}
+});
 
 class ChatListItem extends React.Component {
 	handleClick = () => {
@@ -12,11 +17,14 @@ class ChatListItem extends React.Component {
 
 	render() {
 		const title = this.props.title ? this.props.title : "No Title";
-		const { disabled } = this.props;
+		const { classes, disabled, isActive } = this.props;
 
 		return(
 			<ListItem
-				button
+				// button={!isActive}
+				divider
+				className={classnames(isActive && classes.activeChat)}
+				style={{ cursor: "pointer" }}
 				onClick={this.handleClick}
 				disabled={disabled}
 			>

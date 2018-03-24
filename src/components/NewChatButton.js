@@ -32,10 +32,7 @@ class NewChatButton extends React.Component {
 
 		this.state = {
 			modalView: false,
-			chatTitle: {
-				value: '',
-				isValid: true
-			}
+			chatTitle: ''
 		}
 	}
 
@@ -44,39 +41,15 @@ class NewChatButton extends React.Component {
 	}
 
 	handleTitleChange = (e) => {
-		this.setState({
-			chatTitle: {
-				value: e.target.value,
-				isValid: true,
-			},
-		});
+		this.setState({ chatTitle: e.target.value });
 	};
 
 	handleSubmit = (e) => {
 		e.preventDefault();
 
-		const { chatTitle } = this.state;
-
-		if (!chatTitle.value) {
-			this.setState({
-				chatTitle: {
-					value: chatTitle.value,
-					isValid: false,
-				},
-			});
-
-			return;
-		}
-
-		this.props.createChat(chatTitle.value);
-		
+		this.props.createChat(this.state.chatTitle.trim());
 		this.toggleModal();
-		this.setState({
-			chatTitle: {
-				value: '',
-				isValid: true,
-			},
-		});
+		this.setState({ chatTitle: '' });
 	}
 
 	render() {
@@ -96,7 +69,7 @@ class NewChatButton extends React.Component {
 				</Button>
 				<Modal
 					className={classes.modalDialog}
-					open={modalView}
+					open={modalView && !disabled}
 					onClose={this.toggleModal}
 				>
 					<form
@@ -115,14 +88,14 @@ class NewChatButton extends React.Component {
 							type="text"
 							margin="normal"
 							autoComplete="new-chat"
-							value={chatTitle.value}
+							value={chatTitle}
 							onChange={this.handleTitleChange}
-							error={!chatTitle.isValid}
 						/>
 						<Button
 							variant="raised"
 							type="submit"
 							color="primary"
+							disabled={!chatTitle.trim()}
 						>
 							Create
             		</Button>

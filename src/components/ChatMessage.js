@@ -30,11 +30,10 @@ const styles = theme => ({
 		backgroundColor: '#e6dcff'
 	},
 	statusMessage: {
-		width: '100%',
-		textAlign: 'center'
+		justifyContent: 'center'
 	},
 	statusMessageUser: {
-		display: 'inline',
+		display: 'inline'
 	}
 });
 
@@ -44,17 +43,16 @@ const ChatMessage = ({ classes, user, sender, content, createdAt, statusMessage 
 
 	if (statusMessage) {
 		return (
-			<div className={classes.messageWrapper}>
-				<Typography className={classes.statusMessage}>
-					<Typography
-						className={classes.statusMessageUser}
-						style={{ color: getColor(senderName) }}
-					>
-						{senderName}
-					</Typography>
-					<Typography variant="caption" component="span">
-						{content} {moment(createdAt).fromNow()}
-					</Typography>
+			<div className={classnames(classes.messageWrapper, classes.statusMessage)}>
+				<Typography
+					className={classes.statusMessageUser}
+					style={{ color: getColor(senderName) }}
+				>
+					{senderName}
+				</Typography>
+				&nbsp;
+				<Typography variant="caption">
+					{content} {moment(createdAt).fromNow()}
 				</Typography>
 			</div>
 		)

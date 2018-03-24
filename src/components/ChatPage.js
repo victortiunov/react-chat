@@ -65,6 +65,7 @@ class ChatPage extends React.Component {
 				/>
 				<Sidebar
 					isConnected={isConnected}
+					activeChat={activeChat}
 					myChats={myChats}
 					allChats={allChats}
 					createChat={createChat}

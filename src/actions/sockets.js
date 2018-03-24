@@ -70,9 +70,7 @@ export function socketsConnect() {
 		socket.on('deleted-chat', ({ chat }) => {
 			dispatch({
 				type: types.RECIEVE_DELETED_CHAT,
-				payload: {
-					chatId: chat._id
-				}
+				payload: { chat }
 			});
 		});
 	}

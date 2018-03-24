@@ -3,6 +3,9 @@ import { withStyles } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
 import Avatar from './Avatar';
 import Menu, { MenuItem } from 'material-ui/Menu';
+import { ListItemIcon, ListItemText } from 'material-ui/List';
+import EditIcon from 'material-ui-icons/Edit';
+import LogoutIcon from 'material-ui-icons/ExitToApp';
 import Modal from 'material-ui/Modal';
 import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
@@ -30,19 +33,29 @@ class UserMenu extends React.Component {
 
 		this.state = {
 			menuElement: null,
-			login: '',
-			firstName: '',
-			lastName: '',
+			user: {
+				username: '',
+				firstName: '',
+				lastName: ''
+			},
+			avatarName: '',
+			modalEdit: {
+				username: '',
+				firstName: '',
+				lastName: ''
+			},
 			modalView: false
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.user) {
+		const { user } = nextProps;
+
+		if (user) {
 			this.setState({
-				login: nextProps.user.username,
-				firstName: nextProps.user.firstName,
-				lastName: nextProps.user.lastName
+				user: { ...user },
+				avatarName: userName(user.username, user.firstName, user.lastName),
+				modalEdit: { ...user }
 			});
 		}
 	}
@@ -62,14 +75,27 @@ class UserMenu extends React.Component {
 
 	toggleModal = () => {
 		this.handleClose();
-		this.setState({ modalView: !this.state.modalView });
+		this.setState({
+			modalView: !this.state.modalView,
+			modalEdit: {
+				...this.state.user
+			}
+		});
 	}
 
 	handleInputChange = (event) => {
 		event.persist();
 		const { name, value } = event.target;
 
-		this.setState({ [name]: value });
+		this.setState((prevState) => {
+			const { modalEdit } = prevState;
+			return ({
+				modalEdit: {
+					...modalEdit,
+					[name]: value
+				}
+			});
+		});
 	}
 
 	handleSubmit = (e) => {
@@ -80,20 +106,19 @@ class UserMenu extends React.Component {
 
 	render() {
 		const { classes } = this.props;
-		const { menuElement, login, firstName, lastName, modalView } = this.state;
-		const name = userName(login, firstName, lastName);
+		const { menuElement, modalView, avatarName } = this.state;
+		const { username, firstName, lastName } = this.state.modalEdit;
 
 		return (
 			<React.Fragment>
-				{ name ?
+				{avatarName &&
 					<IconButton
 						aria-owns={menuElement ? 'user-menu' : null}
 						aria-haspopup="true"
 						onClick={this.handleClick}
 					>
-						<Avatar colorFrom={name}>{name}</Avatar>
+						<Avatar colorFrom={avatarName}>{avatarName}</Avatar>
 					</IconButton>
-				:	<div></div>
 				}
 				<Menu
 					id="user-menu"
@@ -101,8 +126,18 @@ class UserMenu extends React.Component {
 					open={!!menuElement}
 					onClose={this.handleClose}
 				>
-					<MenuItem onClick={this.toggleModal}>Edit Profile</MenuItem>
-					<MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+					<MenuItem onClick={this.toggleModal}>
+						<ListItemIcon>
+							<EditIcon />
+						</ListItemIcon>
+						<ListItemText inset primary="Edit Profile" />
+					</MenuItem>
+					<MenuItem onClick={this.handleLogout}>
+						<ListItemIcon>
+							<LogoutIcon />
+						</ListItemIcon>
+						<ListItemText inset primary="Logout" />
+					</MenuItem>
 				</Menu>
 				<Modal
 					className={classes.modalDialog}
@@ -124,10 +159,10 @@ class UserMenu extends React.Component {
 							type="text"
 							margin="normal"
 							autoComplete="username"
-							name="login"
-							value={login}
+							name="username"
+							value={username}
 							onChange={this.handleInputChange}
-							error={!login}
+							error={!username}
 						/>
 						<TextField
 							fullWidth
@@ -156,6 +191,7 @@ class UserMenu extends React.Component {
 							variant="raised"
 							type="submit"
 							color="primary"
+							disabled={!username}
 						>
 							Save
             		</Button>

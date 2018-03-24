@@ -38,8 +38,10 @@ class MessageInput extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.sendMessage(this.state.message);
-		this.setState({ message: '' });
+		if (this.state.message.trim()) {
+			this.props.sendMessage(this.state.message);
+			this.setState({ message: '' });
+		}
 	}
 
 	render() {
@@ -70,7 +72,7 @@ class MessageInput extends React.Component {
 								type="submit"
 								variant="fab"
 								color="primary"
-								disabled={disabled}
+								disabled={disabled || !message.trim()}
 							>
 								<SendIcon/>
 							</Button>
@@ -86,7 +88,7 @@ class MessageInput extends React.Component {
 							onClick={onJoinClick}
 							disabled={disabled}
 						>
-							Join
+							Join the Chat to start messaging
 						</Button>
 					 </Paper>
 				)}

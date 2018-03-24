@@ -76,7 +76,7 @@ export function fetchChat(chatId) {
 		});
 
 		return callApi(
-			`${routes.CHATS}\\${chatId}`,
+			`${routes.CHATS}/${chatId}`,
 			token
 		)
 			.then(json => {
@@ -207,7 +207,7 @@ export function deleteChat(chatId) {
 		});
 
 		return callApi(
-			`${routes.CHATS}\\${chatId}`,
+			`${routes.CHATS}/${chatId}`,
 			token,
 			{ method: 'DELETE' }
 		)

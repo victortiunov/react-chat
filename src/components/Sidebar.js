@@ -6,19 +6,19 @@ import TextField from 'material-ui/TextField';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
 import ChatList from './ChatList';
 import NewChatButton from './NewChatButton';
-import RestoreIcon from 'material-ui-icons/Restore';
-import ExploreIcon from 'material-ui-icons/Explore';
+import MyChatsIcon from 'material-ui-icons/Person';
+import GlobalIcon from 'material-ui-icons/Public';
 
 const styles = theme => ({
 	drawerPaper: {
 		position: 'relative',
 		height: '100%',
-		width: 320,
+		width: 320
 	},
 	drawerHeader: {
 		...theme.mixins.toolbar,
 		paddingLeft: theme.spacing.unit * 3,
-		paddingRight: theme.spacing.unit * 3,
+		paddingRight: theme.spacing.unit * 3
 	}
 });
 
@@ -48,7 +48,7 @@ class Sidebar extends React.Component {
 
 	render() {
 		const { activeTab, searchTitle } = this.state;
-		const { classes, createChat, setActiveChat, isConnected } = this.props;
+		const { classes, activeChat, createChat, setActiveChat, isConnected } = this.props;
 
 		return (
 			<Drawer
@@ -68,6 +68,7 @@ class Sidebar extends React.Component {
 				</div>
 				<Divider />
 				<ChatList
+					activeChat={activeChat}
 					chats={this.getChats()}
 					setActiveChat={setActiveChat}
 					disabled={!isConnected}
@@ -81,8 +82,8 @@ class Sidebar extends React.Component {
 					onChange={this.handleTabChange}
 					showLabels
 				>
-					<BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
-					<BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
+					<BottomNavigationAction label="My Chats" icon={<MyChatsIcon />} />
+					<BottomNavigationAction label="Global" icon={<GlobalIcon />} />
 				</BottomNavigation>
 			</Drawer>
 		);

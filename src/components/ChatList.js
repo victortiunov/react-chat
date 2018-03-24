@@ -12,12 +12,13 @@ const styles = theme => ({
 
 
 
-const ChatList = ({ classes, chats, setActiveChat, disabled }) => (
+const ChatList = ({ classes, activeChat, chats, setActiveChat, disabled }) => (
 	<List className={classes.chatsList}>
-		{chats.map((chat, index) => (
+		{chats.map((chat) => (
 			<ChatListItem
 				key={chat._id}
 				{... chat}
+				isActive={activeChat && chat._id === activeChat._id}
 				onClick={() => setActiveChat(chat._id)}
 				disabled={disabled}
 			/>

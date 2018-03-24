@@ -12,13 +12,14 @@ import SignupForm from './SignupForm';
 
 const styles = theme => ({
 	paper: {
+		// eslint-disable-next-line
 		marginTop: 64 + theme.spacing.unit * 3,
-		width: 500
+		width: 500,
 	},
 	tabContent: {
-		padding: theme.spacing.unit * 3
-	}
-})
+		padding: theme.spacing.unit * 3,
+	},
+});
 
 
 class WelcomePage extends React.Component {
@@ -26,8 +27,8 @@ class WelcomePage extends React.Component {
 		super(props);
 		this.state = {
 			activeTab: 0,
-			error: props.error
-		}
+			error: props.error,
+		};
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -39,11 +40,13 @@ class WelcomePage extends React.Component {
 	}
 
 	render() {
-		const { classes, signup, login, isAuthenticated, isFetching } = this.props;
+		const {
+			classes, signup, login, isAuthenticated, isFetching,
+		} = this.props;
 		const { activeTab, error } = this.state;
 
 		if (isAuthenticated) {
-			return <Redirect to="/chat" />
+			return <Redirect to="/chat" />;
 		}
 
 		return (
@@ -52,7 +55,7 @@ class WelcomePage extends React.Component {
 					<Toolbar>
 						<Typography variant="title" color="inherit" style={{ flex: 1 }}>
 							DogeCodes React Chat
-            		</Typography>
+						</Typography>
 					</Toolbar>
 				</AppBar>
 				<Grid container justify="center">
@@ -69,14 +72,18 @@ class WelcomePage extends React.Component {
 								</Tabs>
 							</AppBar>
 							<div className={classes.tabContent}>
-								{activeTab === 0 && <LoginForm onSubmit={login} error={error} isFetching={isFetching} />}
-								{activeTab === 1 && <SignupForm onSubmit={signup} error={error} isFetching={isFetching} />}
+								{activeTab === 0 &&
+									<LoginForm onSubmit={login} error={error} isFetching={isFetching} />
+								}
+								{activeTab === 1 &&
+									<SignupForm onSubmit={signup} error={error} isFetching={isFetching} />
+								}
 							</div>
 						</Paper>
 					</Grid>
 				</Grid>
 			</React.Fragment>
-		)
+		);
 	}
 }
 

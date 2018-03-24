@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import ChatMessageList from './ChatMessageList';
@@ -17,10 +17,17 @@ const styles = theme => ({
 	},
 	info: {
 		padding: theme.spacing.unit * 3,
-	}
+	},
 });
 
-const Chat = ({ classes, user, activeChat, sendMessage, joinChat, isConnected }) => (
+const Chat = ({
+	classes,
+	user,
+	activeChat,
+	joinChat,
+	sendMessage,
+	isConnected,
+}) => (
 	<main className={classes.chatLayout}>
 		{activeChat ? (
 			<React.Fragment>
@@ -31,6 +38,7 @@ const Chat = ({ classes, user, activeChat, sendMessage, joinChat, isConnected })
 				<MessageInput
 					sendMessage={sendMessage}
 					user={user}
+					// eslint-disable-next-line
 					onJoinClick={() => joinChat(activeChat._id)}
 					disabled={!isConnected}
 				/>
@@ -47,7 +55,7 @@ const Chat = ({ classes, user, activeChat, sendMessage, joinChat, isConnected })
 					Use <strong>My Chats</strong> to see your recent conversations.
 				</Typography>
 			</Paper>
-			)}
+		)}
 	</main>
 );
 

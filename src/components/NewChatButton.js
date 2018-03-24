@@ -11,19 +11,20 @@ const styles = theme => ({
 		position: 'absolute',
 		left: 'auto',
 		right: theme.spacing.unit * 3,
-		bottom: theme.spacing.unit * 3 + 48, // + bottom navigation
+		// eslint-disable-next-line
+		bottom: theme.spacing.unit * 3 + 48,
 	},
 	modalDialog: {
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	modalForm: {
 		width: '30%',
 		minWidth: '300px',
 		padding: theme.spacing.unit * 3,
-		backgroundColor: theme.palette.background.paper
-	}
+		backgroundColor: theme.palette.background.paper,
+	},
 });
 
 class NewChatButton extends React.Component {
@@ -32,8 +33,8 @@ class NewChatButton extends React.Component {
 
 		this.state = {
 			modalView: false,
-			chatTitle: ''
-		}
+			chatTitle: '',
+		};
 	}
 
 	toggleModal = () => {
@@ -78,7 +79,7 @@ class NewChatButton extends React.Component {
 					>
 						<Typography variant="title" id="modal-title">
 							Create new chat
-            		</Typography>
+						</Typography>
 						<TextField
 							required
 							fullWidth
@@ -98,11 +99,11 @@ class NewChatButton extends React.Component {
 							disabled={!chatTitle.trim()}
 						>
 							Create
-            		</Button>
+						</Button>
 					</form>
 				</Modal>
 			</React.Fragment>
-		)
+		);
 	}
 }
 

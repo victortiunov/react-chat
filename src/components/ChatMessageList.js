@@ -5,11 +5,11 @@ import ChatMessage from './ChatMessage';
 const styles = theme => ({
 	messagesWrapper: {
 		overflowY: 'scroll',
-		height: `calc(100% - 60px)`,
+		height: 'calc(100% - 60px)',
 		width: '100%',
 		paddingTop: theme.spacing.unit * 3,
 		marginBottom: '70px',
-	}
+	},
 });
 
 class ChatMessageList extends React.Component {
@@ -22,9 +22,8 @@ class ChatMessageList extends React.Component {
 	}
 
 	scrollDownHistory() {
-		const messagesWrapper = this.refs.messagesWrapper;
-		if (messagesWrapper) {
-			messagesWrapper.scrollTop = messagesWrapper.scrollHeight;
+		if (this.messagesWrapper) {
+			this.messagesWrapper.scrollTop = this.messagesWrapper.scrollHeight;
 		}
 	}
 
@@ -32,8 +31,12 @@ class ChatMessageList extends React.Component {
 		const { classes, user, messages } = this.props;
 
 		return (
-			<div className={classes.messagesWrapper} ref="messagesWrapper">
-				{messages && messages.map((message) => (
+			<div
+				className={classes.messagesWrapper}
+				ref={(wrapper) => { this.messagesWrapper = wrapper; }}
+			>
+				{messages && messages.map(message => (
+					// eslint-disable-next-line
 					<ChatMessage key={message._id} user={user} {...message} />
 				))}
 			</div>

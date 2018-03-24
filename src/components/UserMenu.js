@@ -1,7 +1,6 @@
 import React from 'react';
 import { withStyles } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
-import Avatar from './Avatar';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import { ListItemIcon, ListItemText } from 'material-ui/List';
 import EditIcon from 'material-ui-icons/Edit';
@@ -10,6 +9,7 @@ import Modal from 'material-ui/Modal';
 import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
+import Avatar from './Avatar';
 
 import userName from '../utils/user-name';
 
@@ -17,14 +17,14 @@ const styles = theme => ({
 	modalDialog: {
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	modalForm: {
 		width: '30%',
 		minWidth: '300px',
 		padding: theme.spacing.unit * 3,
-		backgroundColor: theme.palette.background.paper
-	}
+		backgroundColor: theme.palette.background.paper,
+	},
 });
 
 class UserMenu extends React.Component {
@@ -36,16 +36,16 @@ class UserMenu extends React.Component {
 			user: {
 				username: '',
 				firstName: '',
-				lastName: ''
+				lastName: '',
 			},
 			avatarName: '',
 			modalEdit: {
 				username: '',
 				firstName: '',
-				lastName: ''
+				lastName: '',
 			},
-			modalView: false
-		}
+			modalView: false,
+		};
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -55,7 +55,7 @@ class UserMenu extends React.Component {
 			this.setState({
 				user: { ...user },
 				avatarName: userName(user.username, user.firstName, user.lastName),
-				modalEdit: { ...user }
+				modalEdit: { ...user },
 			});
 		}
 	}
@@ -78,8 +78,8 @@ class UserMenu extends React.Component {
 		this.setState({
 			modalView: !this.state.modalView,
 			modalEdit: {
-				...this.state.user
-			}
+				...this.state.user,
+			},
 		});
 	}
 
@@ -92,8 +92,8 @@ class UserMenu extends React.Component {
 			return ({
 				modalEdit: {
 					...modalEdit,
-					[name]: value
-				}
+					[name]: value,
+				},
 			});
 		});
 	}
@@ -150,7 +150,7 @@ class UserMenu extends React.Component {
 					>
 						<Typography variant="title" id="modal-title">
 							Edit profile
-            		</Typography>
+						</Typography>
 						<TextField
 							required
 							fullWidth
@@ -194,7 +194,7 @@ class UserMenu extends React.Component {
 							disabled={!username}
 						>
 							Save
-            		</Button>
+						</Button>
 					</form>
 				</Modal>
 			</React.Fragment>

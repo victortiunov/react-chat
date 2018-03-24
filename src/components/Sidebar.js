@@ -4,22 +4,22 @@ import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
-import ChatList from './ChatList';
-import NewChatButton from './NewChatButton';
 import MyChatsIcon from 'material-ui-icons/Person';
 import GlobalIcon from 'material-ui-icons/Public';
+import ChatList from './ChatList';
+import NewChatButton from './NewChatButton';
 
 const styles = theme => ({
 	drawerPaper: {
 		position: 'relative',
 		height: '100%',
-		width: 320
+		width: 320,
 	},
 	drawerHeader: {
 		...theme.mixins.toolbar,
 		paddingLeft: theme.spacing.unit * 3,
-		paddingRight: theme.spacing.unit * 3
-	}
+		paddingRight: theme.spacing.unit * 3,
+	},
 });
 
 class Sidebar extends React.Component {
@@ -27,16 +27,8 @@ class Sidebar extends React.Component {
 		super(props);
 		this.state = {
 			activeTab: 0,
-			searchTitle: ''
-		}
-	}
-
-	handleTabChange = (e, value) => {
-		this.setState({ activeTab: value, searchTitle: '' });
-	}
-
-	handleSearchTitleChange = (e) => {
-		this.setState({ searchTitle: e.target.value });
+			searchTitle: '',
+		};
 	}
 
 	getChats = () => {
@@ -46,9 +38,19 @@ class Sidebar extends React.Component {
 		return chats.filter(chat => chat.title.toUpperCase().includes(searchTitle));
 	}
 
+	handleSearchTitleChange = (e) => {
+		this.setState({ searchTitle: e.target.value });
+	}
+
+	handleTabChange = (e, value) => {
+		this.setState({ activeTab: value, searchTitle: '' });
+	}
+
 	render() {
 		const { activeTab, searchTitle } = this.state;
-		const { classes, activeChat, createChat, setActiveChat, isConnected } = this.props;
+		const {
+			classes, activeChat, createChat, setActiveChat, isConnected,
+		} = this.props;
 
 		return (
 			<Drawer

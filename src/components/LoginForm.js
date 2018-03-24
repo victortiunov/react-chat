@@ -7,12 +7,12 @@ import Button from 'material-ui/Button';
 
 const styles = theme => ({
 	errorMessage: {
-		color: 'red'
+		color: 'red',
 	},
 	signUpButton: {
 		marginTop: theme.spacing.unit * 2,
-	}
-})
+	},
+});
 
 class LoginForm extends React.Component {
 	state = {
@@ -23,18 +23,18 @@ class LoginForm extends React.Component {
 		password: {
 			value: '',
 			isValid: true,
-		}
+		},
 	}
 
 	handleInputChange = (event) => {
 		event.persist();
 		const { name, value } = event.target;
 
-		this.setState((prevState) => ({
+		this.setState(prevState => ({
 			[name]: {
 				...prevState[name],
-				value
-			}
+				value,
+			},
 		}));
 	}
 
@@ -64,8 +64,7 @@ class LoginForm extends React.Component {
 					onChange={this.handleInputChange}
 					error={!username.isValid}
 					disabled={isFetching}
-				>
-				</TextField>
+				/>
 				<TextField
 					required
 					fullWidth

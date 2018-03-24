@@ -11,8 +11,8 @@ class ChatMenu extends React.Component {
 		super(props);
 
 		this.state = {
-			menuElement: null
-		}
+			menuElement: null,
+		};
 	}
 
 	handleClick = (e) => {

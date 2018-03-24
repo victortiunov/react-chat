@@ -10,17 +10,17 @@ const styles = theme => ({
 		left: 'auto',
 		right: 0,
 		bottom: 0,
-		width: `calc(100% - 320px)`
+		width: 'calc(100% - 320px)',
 	},
 	messageForm: {
-		padding: theme.spacing.unit
+		padding: theme.spacing.unit,
 	},
 	messageInput: {
-		marginTop: 15
+		marginTop: 15,
 	},
 	joinPaper: {
-		padding: theme.spacing.unit * 2
-	}
+		padding: theme.spacing.unit * 2,
+	},
 });
 
 class MessageInput extends React.Component {
@@ -28,8 +28,8 @@ class MessageInput extends React.Component {
 		super(props);
 
 		this.state = {
-			message: ''
-		}
+			message: '',
+		};
 	}
 
 	handleMessageChange = (e) => {
@@ -45,7 +45,9 @@ class MessageInput extends React.Component {
 	}
 
 	render() {
-		const { classes, user, onJoinClick, disabled } = this.props;
+		const {
+			classes, user, onJoinClick, disabled,
+		} = this.props;
 		const { message } = this.state;
 
 		return (
@@ -67,15 +69,15 @@ class MessageInput extends React.Component {
 								/>
 							</Grid>
 							<Grid item className={classes.messageButton}>
-							<Button
-								className={classes.messageButton}
-								type="submit"
-								variant="fab"
-								color="primary"
-								disabled={disabled || !message.trim()}
-							>
-								<SendIcon/>
-							</Button>
+								<Button
+									className={classes.messageButton}
+									type="submit"
+									variant="fab"
+									color="primary"
+									disabled={disabled || !message.trim()}
+								>
+									<SendIcon />
+								</Button>
 							</Grid>
 						</Grid>
 					</form>
@@ -90,7 +92,7 @@ class MessageInput extends React.Component {
 						>
 							Join the Chat to start messaging
 						</Button>
-					 </Paper>
+					</Paper>
 				)}
 			</div>
 		);

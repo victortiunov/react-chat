@@ -11,18 +11,20 @@ const styles = theme => ({
 		display: 'flex',
 		width: '100%',
 		height: '100%',
-		backgroundColor: theme.palette.background.default
-	}
+		backgroundColor: theme.palette.background.default,
+	},
 });
 
 class ChatPage extends React.Component {
 	componentDidMount() {
-		const { recieveAuth, fetchAllChats, fetchMyChats, socketsConnect } = this.props;
+		const {
+			recieveAuth, fetchAllChats, fetchMyChats, socketsConnect,
+		} = this.props;
 
 		Promise.all([
 			recieveAuth(),
 			fetchAllChats(),
-			fetchMyChats()
+			fetchMyChats(),
 		])
 			.then(() => {
 				socketsConnect();
@@ -32,12 +34,14 @@ class ChatPage extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		const prevChat = this.props.activeChat;
 		const nextChat = nextProps.activeChat;
-		
+
 		if (nextChat) {
+			/* eslint-disable no-underscore-dangle */
 			if (prevChat && prevChat._id !== nextChat._id) {
-				this.props.unmountChat(prevChat._id)
+				this.props.unmountChat(prevChat._id);
 			}
 			this.props.mountChat(nextChat._id);
+			/* eslint-enable no-underscore-dangle */
 		}
 	}
 
@@ -49,7 +53,7 @@ class ChatPage extends React.Component {
 			sendMessage,
 			user, editUser, logout,
 			error,
-			isConnected
+			isConnected,
 		} = this.props;
 
 		return (
@@ -80,8 +84,8 @@ class ChatPage extends React.Component {
 				/>
 				<ErrorMessage error={error} />
 			</div>
-		)
+		);
 	}
 }
 
-export default withStyles(styles) (ChatPage);
+export default withStyles(styles)(ChatPage);

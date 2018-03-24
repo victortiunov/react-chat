@@ -7,12 +7,12 @@ import Button from 'material-ui/Button';
 
 const styles = theme => ({
 	errorMessage: {
-		color: 'red'
+		color: 'red',
 	},
 	signUpButton: {
 		marginTop: theme.spacing.unit * 2,
-	}
-})
+	},
+});
 
 class SignupForm extends React.Component {
 	state = {
@@ -46,11 +46,11 @@ class SignupForm extends React.Component {
 		event.persist();
 		const { name, value } = event.target;
 
-		this.setState((prevState) => ({
+		this.setState(prevState => ({
 			[name]: {
 				...prevState[name],
-				value
-			}
+				value,
+			},
 		}));
 	}
 
@@ -124,7 +124,7 @@ class SignupForm extends React.Component {
 					disabled={isFetching}
 				>
 					Signup
-        		</Button>
+				</Button>
 			</form>
 		);
 	}

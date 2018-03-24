@@ -3,8 +3,8 @@ import classnames from 'classnames';
 import moment from 'moment';
 import { withStyles } from 'material-ui';
 import Typography from 'material-ui/Typography';
-import Avatar from './Avatar';
 import Paper from 'material-ui/Paper';
+import Avatar from './Avatar';
 
 import userName from '../utils/user-name';
 import getColor from '../utils/color-from';
@@ -27,17 +27,20 @@ const styles = theme => ({
 	},
 	messageFromMe: {
 		marginRight: theme.spacing.unit * 2,
-		backgroundColor: '#e6dcff'
+		backgroundColor: '#e6dcff',
 	},
 	statusMessage: {
-		justifyContent: 'center'
+		justifyContent: 'center',
 	},
 	statusMessageUser: {
-		display: 'inline'
-	}
+		display: 'inline',
+	},
 });
 
-const ChatMessage = ({ classes, user, sender, content, createdAt, statusMessage }) => {
+const ChatMessage = ({
+	classes, user, sender, content, createdAt, statusMessage,
+}) => {
+	// eslint-disable-next-line
 	const isMessageFromMe = sender._id === user._id;
 	const senderName = userName(sender.username, sender.firstName, sender.lastName);
 
@@ -55,7 +58,7 @@ const ChatMessage = ({ classes, user, sender, content, createdAt, statusMessage 
 					{content} {moment(createdAt).fromNow()}
 				</Typography>
 			</div>
-		)
+		);
 	}
 
 	const userAvatar = (
@@ -67,13 +70,15 @@ const ChatMessage = ({ classes, user, sender, content, createdAt, statusMessage 
 	return (
 		<div className={classnames(
 			classes.messageWrapper,
-			isMessageFromMe && classes.messageWrappperFromMe
-		)}>
+			isMessageFromMe && classes.messageWrappperFromMe,
+		)}
+		>
 			{!isMessageFromMe && userAvatar}
 			<Paper className={classnames(
 				classes.message,
-				isMessageFromMe && classes.messageFromMe
-			)}>
+				isMessageFromMe && classes.messageFromMe,
+			)}
+			>
 				<Typography variant="caption">
 					{senderName}
 				</Typography>

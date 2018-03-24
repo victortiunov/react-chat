@@ -10,17 +10,19 @@ import UserMenu from './UserMenu';
 const styles = theme => ({
 	appBar: {
 		position: 'fixed',
-		width: `calc(100% - 320px)`,
+		width: 'calc(100% - 320px)',
 	},
 	appBarTitle: {
 		flex: 1,
 		marginLeft: theme.spacing.unit * 2,
 		marginRight: theme.spacing.unit * 2,
 		color: theme.palette.secondary.contrastText,
-	}
+	},
 });
 
-const ChatHeader = ({ classes, user, editUser, onLogout, activeChat, leaveChat, deleteChat, isConnected }) => (
+const ChatHeader = ({
+	classes, user, editUser, onLogout, activeChat, leaveChat, deleteChat, isConnected,
+}) => (
 	<AppBar color="primary" className={classes.appBar}>
 		<Toolbar>
 			{activeChat ? (
@@ -30,7 +32,9 @@ const ChatHeader = ({ classes, user, editUser, onLogout, activeChat, leaveChat, 
 						{activeChat.title}
 						<ChatMenu
 							user={user}
+							// eslint-disable-next-line
 							onLeaveClick={() => leaveChat(activeChat._id)}
+							// eslint-disable-next-line
 							onDeleteClick={() => deleteChat(activeChat._id)}
 							disabled={!isConnected}
 						/>

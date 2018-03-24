@@ -6,15 +6,15 @@ import WelcomePage from '../components/WelcomePage';
 const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated,
 	error: state.services.errors.auth,
-	isFetching: state.services.isFetching.login || state.services.isFetching.signup
+	isFetching: state.services.isFetching.login || state.services.isFetching.signup,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	signup,
-	login
+	login,
 }, dispatch);
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
 )(WelcomePage);

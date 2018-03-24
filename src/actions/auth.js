@@ -5,16 +5,16 @@ import callApi from '../utils/call-api';
 export function signup(username, password) {
 	return (dispatch) => {
 		dispatch({
-			type: types.SIGNUP_REQUEST
+			type: types.SIGNUP_REQUEST,
 		});
 
 		return callApi(
 			routes.SIGNUP,
 			null,
 			{ method: 'POST' },
-			{ username, password }
+			{ username, password },
 		)
-			.then(json => {
+			.then((json) => {
 				if (!json.token) {
 					throw new Error('Token has not been provided!');
 				}
@@ -23,29 +23,29 @@ export function signup(username, password) {
 
 				dispatch({
 					type: types.SIGNUP_SUCCESS,
-					payload: json
-				})
+					payload: json,
+				});
 			})
 			.catch(reason => dispatch({
 				type: types.SIGNUP_FAILURE,
-				payload: reason
-			}))
-	}
+				payload: reason,
+			}));
+	};
 }
 
 export function login(username, password) {
 	return (dispatch) => {
 		dispatch({
-			type: types.LOGIN_REQUEST
+			type: types.LOGIN_REQUEST,
 		});
 
 		return callApi(
 			routes.LOGIN,
 			null,
 			{ method: 'POST' },
-			{ username, password }
+			{ username, password },
 		)
-			.then(json => {
+			.then((json) => {
 				if (!json.token) {
 					throw new Error('Token has not been provided!');
 				}
@@ -54,14 +54,14 @@ export function login(username, password) {
 
 				dispatch({
 					type: types.LOGIN_SUCCESS,
-					payload: json
-				})
+					payload: json,
+				});
 			})
 			.catch(reason => dispatch({
 				type: types.LOGIN_FAILURE,
-				payload: reason
-			}))
-	}
+				payload: reason,
+			}));
+	};
 }
 
 export function logout() {
@@ -73,26 +73,24 @@ export function logout() {
 		}
 
 		dispatch({
-			type: types.LOGOUT_REQUEST
+			type: types.LOGOUT_REQUEST,
 		});
 
-		return callApi(
-			routes.LOGOUT
-		)
-			.then((json) => {
+		return callApi(routes.LOGOUT)
+			.then(() => {
 				localStorage.removeItem('token');
 
 				dispatch({
-					type: types.LOGOUT_SUCCESS
+					type: types.LOGOUT_SUCCESS,
 				});
 			})
 			.catch((reason) => {
 				dispatch({
 					type: types.LOGOUT_FAILURE,
-					payload: reason
+					payload: reason,
 				});
-			})
-	}
+			});
+	};
 }
 
 export function recieveAuth() {
@@ -106,22 +104,21 @@ export function recieveAuth() {
 		if (!token) {
 			return dispatch({
 				type: types.RECIEVE_AUTH_FAILURE,
-				payload: 'There is no token!'
-			})
+				payload: 'There is no token!',
+			});
 		}
 
 		return callApi(
 			routes.USERS_ME,
-			token
+			token,
 		)
 			.then(json => dispatch({
 				type: types.RECIEVE_AUTH_SUCCESS,
-				payload: json
-			})
-			)
+				payload: json,
+			}))
 			.catch(reason => dispatch({
 				type: types.RECIEVE_AUTH_FAILURE,
-				payload: reason
-			}))
-	}
+				payload: reason,
+			}));
+	};
 }

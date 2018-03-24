@@ -69,7 +69,6 @@ const byIds = (state = initialState.byIds, action) => {
 		case types.FETCH_CHAT_SUCCESS:
 		case types.CREATE_CHAT_SUCCESS:
 		case types.LEAVE_CHAT_SUCCESS:
-		case types.JOIN_CHAT_SUCCESS:
 		case types.RECIEVE_NEW_CHAT:
 			return {
 				...state,

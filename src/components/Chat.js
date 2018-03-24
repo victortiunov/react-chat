@@ -38,7 +38,7 @@ const Chat = ({ classes, user, activeChat, sendMessage, joinChat, isConnected })
 		) : (
 			<Paper className={classes.info}>
 				<Typography variant="body1" gutterBottom>
-					Plase select a chat to start messaging…
+					Please select a chat to start messaging…
 				</Typography>
 				<Typography variant="body1" gutterBottom>
 					Use <strong>Global</strong> to explore communities around here.

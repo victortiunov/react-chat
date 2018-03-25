@@ -13,7 +13,9 @@ const mockProps = {
     isCreator: true,
     isChatMember: true,
   },
-  activeChat: {},
+  activeChat: {
+    _id: '',
+  },
   joinChat: jest.fn(),
   sendMessage: jest.fn(),
   isConnected: true,

@@ -8,7 +8,9 @@ jest.mock('../ChatList', () => () => 'ChatList');
 jest.mock('../NewChatButton', () => () => 'NewChatButton');
 
 const mockProps = {
-  activeChat: {},
+  activeChat: {
+    _id: '',
+  },
   myChats: [],
   allChats: [],
   createChat: jest.fn(),

@@ -9,7 +9,9 @@ jest.mock('../ChatHeader', () => () => 'ChatHeader');
 jest.mock('../ErrorMessage', () => () => 'ErrorMessage');
 
 const mockProps = {
-  activeChat: {},
+  activeChat: {
+    _id: '',
+  },
   myChats: [],
   allChats: [],
   createChat: jest.fn(),

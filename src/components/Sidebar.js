@@ -26,7 +26,9 @@ const styles = theme => ({
 class Sidebar extends React.Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
-    activeChat: PropTypes.objectOf(PropTypes.object),
+    activeChat: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+    }),
     myChats: PropTypes.arrayOf(PropTypes.object).isRequired,
     allChats: PropTypes.arrayOf(PropTypes.object).isRequired,
     createChat: PropTypes.func.isRequired,

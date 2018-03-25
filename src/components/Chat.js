@@ -62,7 +62,9 @@ Chat.propTypes = {
     isCreator: PropTypes.bool.isRequired,
     isChatMember: PropTypes.bool.isRequired,
   }).isRequired,
-  activeChat: PropTypes.objectOf(PropTypes.object),
+  activeChat: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+  }),
   joinChat: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
   isConnected: PropTypes.bool.isRequired,

@@ -75,10 +75,6 @@ ChatHeader.propTypes = {
   activeChat: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    creator: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-    }).isRequired,
-    members: PropTypes.arrayOf(PropTypes.object).isRequired,
   }),
   leaveChat: PropTypes.func.isRequired,
   deleteChat: PropTypes.func.isRequired,

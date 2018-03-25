@@ -33,11 +33,6 @@ ChatList.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   activeChat: PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    creator: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-    }).isRequired,
-    members: PropTypes.arrayOf(PropTypes.object).isRequired,
   }),
   chats: PropTypes.arrayOf(PropTypes.object).isRequired,
   setActiveChat: PropTypes.func.isRequired,

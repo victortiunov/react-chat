@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatListItem /> renders active correctly 1`] = `
+<li
+  className="MuiListItem-root-46 MuiListItem-default-49 MuiListItem-gutters-53 MuiListItem-divider-52 ChatListItem-activeChat-45"
+  disabled={false}
+  onClick={[Function]}
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  <div
+    className="MuiAvatar-root-56 MuiAvatar-colorDefault-57"
+    style={
+      Object {
+        "backgroundColor": "#8bc34a",
+      }
+    }
+  >
+    GT
+  </div>
+  <div
+    className="MuiListItemText-root-59"
+  >
+    <h3
+      className="MuiTypography-root-65 MuiTypography-subheading-72 MuiListItemText-primary-62"
+    >
+      Gryffindor Talks
+    </h3>
+  </div>
+</li>
+`;
+
+exports[`<ChatListItem /> renders correctly 1`] = `
+<li
+  className="MuiListItem-root-46 MuiListItem-default-49 MuiListItem-gutters-53 MuiListItem-divider-52"
+  disabled={false}
+  onClick={[Function]}
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  <div
+    className="MuiAvatar-root-56 MuiAvatar-colorDefault-57"
+    style={
+      Object {
+        "backgroundColor": "#8bc34a",
+      }
+    }
+  >
+    GT
+  </div>
+  <div
+    className="MuiListItemText-root-59"
+  >
+    <h3
+      className="MuiTypography-root-65 MuiTypography-subheading-72 MuiListItemText-primary-62"
+    >
+      Gryffindor Talks
+    </h3>
+  </div>
+</li>
+`;
+
+exports[`<ChatListItem /> renders disabled correctly 1`] = `
+<li
+  className="MuiListItem-root-46 MuiListItem-default-49 MuiListItem-gutters-53 MuiListItem-divider-52 MuiListItem-disabled-51"
+  disabled={true}
+  onClick={[Function]}
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  <div
+    className="MuiAvatar-root-56 MuiAvatar-colorDefault-57"
+    style={
+      Object {
+        "backgroundColor": "#8bc34a",
+      }
+    }
+  >
+    GT
+  </div>
+  <div
+    className="MuiListItemText-root-59"
+  >
+    <h3
+      className="MuiTypography-root-65 MuiTypography-subheading-72 MuiListItemText-primary-62"
+    >
+      Gryffindor Talks
+    </h3>
+  </div>
+</li>
+`;

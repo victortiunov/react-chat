@@ -29,12 +29,7 @@ class ChatMessageList extends React.Component {
       createdAt: PropTypes.string.isRequired,
     })),
     user: PropTypes.shape({
-      username: PropTypes.string,
-      firstName: PropTypes.string,
-      lastName: PropTypes.string,
-      isMember: PropTypes.bool.isRequired,
-      isCreator: PropTypes.bool.isRequired,
-      isChatMember: PropTypes.bool.isRequired,
+      _id: PropTypes.string.isRequired,
     }).isRequired,
   };
 

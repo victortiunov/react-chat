@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessageInput /> renders disabled join button 1`] = `
+<div
+  className="MessageInput-messageInputWrapper-57"
+>
+  <div
+    className="MuiPaper-root-61 MuiPaper-elevation6-69 MuiPaper-rounded-62 MessageInput-joinPaper-60"
+  >
+    <button
+      className="MuiButtonBase-root-103 MuiButtonBase-disabled-104 MuiButton-root-88 MuiButton-raised-93 MuiButton-raisedPrimary-95 MuiButton-disabled-97 MuiButton-fullWidth-102"
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex="-1"
+      type="button"
+    >
+      <span
+        className="MuiButton-label-89"
+      >
+        Join the Chat to start messaging
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<MessageInput /> renders join button 1`] = `
+<div
+  className="MessageInput-messageInputWrapper-57"
+>
+  <div
+    className="MuiPaper-root-61 MuiPaper-elevation6-69 MuiPaper-rounded-62 MessageInput-joinPaper-60"
+  >
+    <button
+      className="MuiButtonBase-root-103 MuiButton-root-88 MuiButton-raised-93 MuiButton-raisedPrimary-95 MuiButton-fullWidth-102"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex="0"
+      type="button"
+    >
+      <span
+        className="MuiButton-label-89"
+      >
+        Join the Chat to start messaging
+      </span>
+      <span
+        className="MuiTouchRipple-root-106"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<MessageInput /> renders new message form 1`] = `
+<div
+  className="MessageInput-messageInputWrapper-57"
+>
+  <div
+    className="MuiPaper-root-61 MuiPaper-elevation6-69 MuiPaper-rounded-62 MessageInput-joinPaper-60"
+  >
+    <button
+      className="MuiButtonBase-root-103 MuiButton-root-88 MuiButton-raised-93 MuiButton-raisedPrimary-95 MuiButton-fullWidth-102"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex="0"
+      type="button"
+    >
+      <span
+        className="MuiButton-label-89"
+      >
+        Join the Chat to start messaging
+      </span>
+      <span
+        className="MuiTouchRipple-root-106"
+      />
+    </button>
+  </div>
+</div>
+`;

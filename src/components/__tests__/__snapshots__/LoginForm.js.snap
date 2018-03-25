@@ -1,0 +1,388 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginForm /> renders correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    aria-describedby={undefined}
+    className="MuiFormControl-root-84 MuiFormControl-marginNormal-85 MuiFormControl-fullWidth-87"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-94 MuiInputLabel-root-88 MuiInputLabel-formControl-89 MuiInputLabel-animated-92"
+      data-shrink={false}
+      htmlFor={undefined}
+    >
+      Username
+      <span
+        className="MuiFormLabel-asterisk-98"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-100 MuiInput-fullWidth-107 MuiInput-formControl-101 MuiInput-underline-104"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete="username"
+        autoFocus={undefined}
+        className="MuiInput-input-108"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name="username"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Input your username..."
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    aria-describedby={undefined}
+    className="MuiFormControl-root-84 MuiFormControl-marginNormal-85 MuiFormControl-fullWidth-87"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-94 MuiInputLabel-root-88 MuiInputLabel-formControl-89 MuiInputLabel-animated-92"
+      data-shrink={false}
+      htmlFor={undefined}
+    >
+      Password
+      <span
+        className="MuiFormLabel-asterisk-98"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-100 MuiInput-fullWidth-107 MuiInput-formControl-101 MuiInput-underline-104"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete="current-password"
+        autoFocus={undefined}
+        className="MuiInput-input-108 MuiInput-inputType-112"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your password..."
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <p
+    className="MuiTypography-root-114 MuiTypography-body1-123 LoginForm-errorMessage-82"
+  >
+    
+  </p>
+  <button
+    className="MuiButtonBase-root-153 MuiButton-root-138 MuiButton-raised-143 MuiButton-raisedPrimary-145 MuiButton-fullWidth-152 LoginForm-signUpButton-83"
+    disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="submit"
+  >
+    <span
+      className="MuiButton-label-139"
+    >
+      Login
+    </span>
+    <span
+      className="MuiTouchRipple-root-156"
+    />
+  </button>
+</form>
+`;
+
+exports[`<LoginForm /> renders error message 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    aria-describedby={undefined}
+    className="MuiFormControl-root-84 MuiFormControl-marginNormal-85 MuiFormControl-fullWidth-87"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-94 MuiInputLabel-root-88 MuiInputLabel-formControl-89 MuiInputLabel-animated-92"
+      data-shrink={false}
+      htmlFor={undefined}
+    >
+      Username
+      <span
+        className="MuiFormLabel-asterisk-98"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-100 MuiInput-fullWidth-107 MuiInput-formControl-101 MuiInput-underline-104"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete="username"
+        autoFocus={undefined}
+        className="MuiInput-input-108"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name="username"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Input your username..."
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    aria-describedby={undefined}
+    className="MuiFormControl-root-84 MuiFormControl-marginNormal-85 MuiFormControl-fullWidth-87"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-94 MuiInputLabel-root-88 MuiInputLabel-formControl-89 MuiInputLabel-animated-92"
+      data-shrink={false}
+      htmlFor={undefined}
+    >
+      Password
+      <span
+        className="MuiFormLabel-asterisk-98"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-100 MuiInput-fullWidth-107 MuiInput-formControl-101 MuiInput-underline-104"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete="current-password"
+        autoFocus={undefined}
+        className="MuiInput-input-108 MuiInput-inputType-112"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your password..."
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <p
+    className="MuiTypography-root-114 MuiTypography-body1-123 LoginForm-errorMessage-82"
+  >
+    Errors happen!
+  </p>
+  <button
+    className="MuiButtonBase-root-153 MuiButton-root-138 MuiButton-raised-143 MuiButton-raisedPrimary-145 MuiButton-fullWidth-152 LoginForm-signUpButton-83"
+    disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="submit"
+  >
+    <span
+      className="MuiButton-label-139"
+    >
+      Login
+    </span>
+    <span
+      className="MuiTouchRipple-root-156"
+    />
+  </button>
+</form>
+`;
+
+exports[`<LoginForm /> renders progress bar 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    aria-describedby={undefined}
+    className="MuiFormControl-root-84 MuiFormControl-marginNormal-85 MuiFormControl-fullWidth-87"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-94 MuiInputLabel-root-88 MuiInputLabel-formControl-89 MuiInputLabel-animated-92"
+      data-shrink={false}
+      htmlFor={undefined}
+    >
+      Username
+      <span
+        className="MuiFormLabel-asterisk-98"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-100 MuiInput-disabled-103 MuiInput-fullWidth-107 MuiInput-formControl-101 MuiInput-underline-104"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete="username"
+        autoFocus={undefined}
+        className="MuiInput-input-108 MuiInput-inputDisabled-110"
+        defaultValue={undefined}
+        disabled={true}
+        id={undefined}
+        name="username"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Input your username..."
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    aria-describedby={undefined}
+    className="MuiFormControl-root-84 MuiFormControl-marginNormal-85 MuiFormControl-fullWidth-87"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-94 MuiInputLabel-root-88 MuiInputLabel-formControl-89 MuiInputLabel-animated-92"
+      data-shrink={false}
+      htmlFor={undefined}
+    >
+      Password
+      <span
+        className="MuiFormLabel-asterisk-98"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-100 MuiInput-disabled-103 MuiInput-fullWidth-107 MuiInput-formControl-101 MuiInput-underline-104"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete="current-password"
+        autoFocus={undefined}
+        className="MuiInput-input-108 MuiInput-inputDisabled-110 MuiInput-inputType-112"
+        defaultValue={undefined}
+        disabled={true}
+        id={undefined}
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your password..."
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="MuiLinearProgress-root-163 MuiLinearProgress-colorPrimary-164"
+    mode="indeterminate"
+    role="progressbar"
+  >
+    <div
+      className="MuiLinearProgress-bar-171 MuiLinearProgress-barColorPrimary-172 MuiLinearProgress-bar1Indeterminate-174"
+      style={Object {}}
+    />
+    <div
+      className="MuiLinearProgress-bar-171 MuiLinearProgress-barColorPrimary-172 MuiLinearProgress-bar2Indeterminate-175"
+      style={Object {}}
+    />
+  </div>
+  <button
+    className="MuiButtonBase-root-153 MuiButtonBase-disabled-154 MuiButton-root-138 MuiButton-raised-143 MuiButton-raisedPrimary-145 MuiButton-disabled-147 MuiButton-fullWidth-152 LoginForm-signUpButton-83"
+    disabled={true}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="-1"
+    type="submit"
+  >
+    <span
+      className="MuiButton-label-139"
+    >
+      Login
+    </span>
+  </button>
+</form>
+`;

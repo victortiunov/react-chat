@@ -19,14 +19,7 @@ const styles = theme => ({
 class ChatPage extends React.Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
-    activeChat: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      creator: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-      }).isRequired,
-      members: PropTypes.arrayOf(PropTypes.object).isRequired,
-    }),
+    activeChat: PropTypes.objectOf(PropTypes.object),
     myChats: PropTypes.arrayOf(PropTypes.object).isRequired,
     allChats: PropTypes.arrayOf(PropTypes.object).isRequired,
     createChat: PropTypes.func.isRequired,

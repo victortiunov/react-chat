@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -12,6 +13,7 @@ import SignupForm from './SignupForm';
 
 const styles = theme => ({
   paper: {
+    // eslint-disable-next-line
     marginTop: 64 + theme.spacing.unit * 3,
     width: 500,
   },
@@ -21,6 +23,19 @@ const styles = theme => ({
 });
 
 class WelcomePage extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    signup: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+  }
+
+  static defaultProps = {
+    error: '',
+  }
+
   constructor(props) {
     super(props);
     this.state = {

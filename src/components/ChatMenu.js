@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import { ListItemIcon, ListItemText } from 'material-ui/List';
@@ -7,6 +8,20 @@ import LeaveIcon from 'material-ui-icons/ExitToApp';
 import DeleteIcon from 'material-ui-icons/Delete';
 
 class ChatMenu extends React.Component {
+  static propTypes = {
+    user: PropTypes.shape({
+      username: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      isMember: PropTypes.bool.isRequired,
+      isCreator: PropTypes.bool.isRequired,
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+    disabled: PropTypes.bool.isRequired,
+    onLeaveClick: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 

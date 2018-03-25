@@ -14,8 +14,7 @@ const activeId = (state = initialState.activeId, action) => {
     case types.SET_ACTIVE_CHAT:
     case types.JOIN_CHAT_SUCCESS:
     case types.CREATE_CHAT_SUCCESS:
-      // eslint-disable-next-line
-      return action.payload.chat._id;
+      return getChatId(action.payload.chat);
     case types.UNSET_ACTIVE_CHAT:
     case types.DELETE_CHAT_SUCCESS:
       return '';
@@ -30,7 +29,6 @@ const allIds = (state = initialState.allIds, action) => {
   switch (action.type) {
     case types.FETCH_ALL_CHATS_SUCCESS:
       return action.payload.chats.map(getChatId);
-    case types.CREATE_CHAT_SUCCESS:
     case types.RECIEVE_NEW_CHAT:
       return [...state, getChatId(action.payload.chat)];
     case types.DELETE_CHAT_SUCCESS:

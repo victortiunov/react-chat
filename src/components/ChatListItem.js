@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemText } from 'material-ui/List';
@@ -11,6 +12,14 @@ const styles = () => ({
 });
 
 class ChatListItem extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    isActive: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }
+
   handleClick = () => {
     this.props.onClick();
   };
@@ -21,7 +30,6 @@ class ChatListItem extends React.Component {
 
     return (
       <ListItem
-        // button={!isActive}
         divider
         className={classnames(isActive && classes.activeChat)}
         style={{ cursor: 'pointer' }}

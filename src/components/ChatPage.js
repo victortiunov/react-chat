@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui';
 import Sidebar from './Sidebar';
 import ChatHeader from './ChatHeader';
@@ -16,6 +17,49 @@ const styles = theme => ({
 });
 
 class ChatPage extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    activeChat: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      creator: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+      }).isRequired,
+      members: PropTypes.arrayOf(PropTypes.object).isRequired,
+    }),
+    myChats: PropTypes.arrayOf(PropTypes.object).isRequired,
+    allChats: PropTypes.arrayOf(PropTypes.object).isRequired,
+    createChat: PropTypes.func.isRequired,
+    leaveChat: PropTypes.func.isRequired,
+    deleteChat: PropTypes.func.isRequired,
+    joinChat: PropTypes.func.isRequired,
+    setActiveChat: PropTypes.func.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+    user: PropTypes.shape({
+      username: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      isMember: PropTypes.bool.isRequired,
+      isCreator: PropTypes.bool.isRequired,
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+    editUser: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    isConnected: PropTypes.bool.isRequired,
+    recieveAuth: PropTypes.func.isRequired,
+    fetchAllChats: PropTypes.func.isRequired,
+    fetchMyChats: PropTypes.func.isRequired,
+    socketsConnect: PropTypes.func.isRequired,
+    mountChat: PropTypes.func.isRequired,
+    unmountChat: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+    activeChat: null,
+    error: '',
+  }
+
   componentDidMount() {
     const {
       recieveAuth, fetchAllChats, fetchMyChats, socketsConnect,

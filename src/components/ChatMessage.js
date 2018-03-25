@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import moment from 'moment';
 import { withStyles } from 'material-ui';
@@ -80,6 +81,26 @@ const ChatMessage = ({
       {isMessageFromMe && userAvatar}
     </div>
   );
+};
+
+ChatMessage.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
+  sender: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    username: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+  }).isRequired,
+  content: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  statusMessage: PropTypes.bool,
+};
+
+ChatMessage.defaultProps = {
+  statusMessage: false,
 };
 
 export default withStyles(styles)(ChatMessage);

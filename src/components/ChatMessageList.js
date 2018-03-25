@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import ChatMessage from './ChatMessage';
 
@@ -13,6 +14,34 @@ const styles = theme => ({
 });
 
 class ChatMessageList extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    messages: PropTypes.arrayOf(PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      chatId: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      sender: PropTypes.PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        username: PropTypes.string,
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+      }).isRequired,
+      createdAt: PropTypes.string.isRequired,
+    })),
+    user: PropTypes.shape({
+      username: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      isMember: PropTypes.bool.isRequired,
+      isCreator: PropTypes.bool.isRequired,
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+  };
+
+  static defaultProps = {
+    messages: [],
+  };
+
   componentDidMount() {
     this.scrollDownHistory();
   }

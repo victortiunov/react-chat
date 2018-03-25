@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { Input, Grid, Button } from 'material-ui';
 import SendIcon from 'material-ui-icons/Send';
@@ -24,6 +25,16 @@ const styles = theme => ({
 });
 
 class MessageInput extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    user: PropTypes.shape({
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+    disabled: PropTypes.bool.isRequired,
+    onJoinClick: PropTypes.func.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -39,10 +40,10 @@ const ChatHeader = ({
             {activeChat.title}
             <ChatMenu
               user={user}
-              // eslint-disable-next-line
+              /* eslint-disable no-underscore-dangle */
               onLeaveClick={() => leaveChat(activeChat._id)}
-              // eslint-disable-next-line
               onDeleteClick={() => deleteChat(activeChat._id)}
+              /* eslint-enable no-underscore-dangle */
               disabled={!isConnected}
             />
           </Typography>
@@ -56,5 +57,34 @@ const ChatHeader = ({
     </Toolbar>
   </AppBar>
 );
+
+ChatHeader.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    isMember: PropTypes.bool.isRequired,
+    isCreator: PropTypes.bool.isRequired,
+    isChatMember: PropTypes.bool.isRequired,
+  }).isRequired,
+  editUser: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  activeChat: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    creator: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+    }).isRequired,
+    members: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }),
+  leaveChat: PropTypes.func.isRequired,
+  deleteChat: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
+};
+
+ChatHeader.defaultProps = {
+  activeChat: null,
+};
 
 export default withStyles(styles)(ChatHeader);

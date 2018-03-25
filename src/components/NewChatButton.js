@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
@@ -11,6 +12,7 @@ const styles = theme => ({
     position: 'absolute',
     left: 'auto',
     right: theme.spacing.unit * 3,
+    // eslint-disable-next-line
     bottom: theme.spacing.unit * 3 + 48,
   },
   modalDialog: {
@@ -27,6 +29,12 @@ const styles = theme => ({
 });
 
 class NewChatButton extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    disabled: PropTypes.bool.isRequired,
+    createChat: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 

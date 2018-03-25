@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
@@ -50,5 +51,32 @@ const Chat = ({
     )}
   </main>
 );
+
+Chat.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    isMember: PropTypes.bool.isRequired,
+    isCreator: PropTypes.bool.isRequired,
+    isChatMember: PropTypes.bool.isRequired,
+  }).isRequired,
+  activeChat: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    creator: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+    }).isRequired,
+    members: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }),
+  joinChat: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
+};
+
+Chat.defaultProps = {
+  activeChat: null,
+};
 
 export default withStyles(styles)(Chat);

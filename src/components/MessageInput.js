@@ -33,7 +33,7 @@ class MessageInput extends React.Component {
     disabled: PropTypes.bool.isRequired,
     onJoinClick: PropTypes.func.isRequired,
     sendMessage: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);

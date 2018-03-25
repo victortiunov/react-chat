@@ -53,12 +53,12 @@ class ChatPage extends React.Component {
     socketsConnect: PropTypes.func.isRequired,
     mountChat: PropTypes.func.isRequired,
     unmountChat: PropTypes.func.isRequired,
-  }
+  };
 
   static defaultProps = {
     activeChat: null,
     error: '',
-  }
+  };
 
   componentDidMount() {
     const {
@@ -113,6 +113,7 @@ class ChatPage extends React.Component {
           activeChat={activeChat}
           leaveChat={leaveChat}
           deleteChat={deleteChat}
+          joinChat={joinChat}
         />
         <Sidebar
           isConnected={isConnected}

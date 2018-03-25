@@ -33,7 +33,7 @@ class NewChatButton extends React.Component {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     disabled: PropTypes.bool.isRequired,
     createChat: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);

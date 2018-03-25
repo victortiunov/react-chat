@@ -39,11 +39,11 @@ class Sidebar extends React.Component {
     createChat: PropTypes.func.isRequired,
     setActiveChat: PropTypes.func.isRequired,
     isConnected: PropTypes.bool.isRequired,
-  }
+  };
 
   static defaultProps = {
     activeChat: null,
-  }
+  };
 
   constructor(props) {
     super(props);

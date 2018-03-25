@@ -6,6 +6,7 @@ import { ListItemIcon, ListItemText } from 'material-ui/List';
 import MoreIcon from 'material-ui-icons/MoreVert';
 import LeaveIcon from 'material-ui-icons/ExitToApp';
 import DeleteIcon from 'material-ui-icons/Delete';
+import JoinIcon from 'material-ui-icons/PlaylistAdd';
 
 class ChatMenu extends React.Component {
   static propTypes = {
@@ -20,7 +21,8 @@ class ChatMenu extends React.Component {
     disabled: PropTypes.bool.isRequired,
     onLeaveClick: PropTypes.func.isRequired,
     onDeleteClick: PropTypes.func.isRequired,
-  }
+    onJoinClick: PropTypes.func.isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -48,13 +50,18 @@ class ChatMenu extends React.Component {
     this.props.onDeleteClick();
   };
 
+  handleJoinClick = () => {
+    this.handleClose();
+    this.props.onJoinClick();
+  };
+
   render() {
     const { user, disabled } = this.props;
     const { menuElement } = this.state;
 
-    if (!user.isChatMember) {
-      return null;
-    }
+    // if (!user.isChatMember) {
+    //   return null;
+    // }
 
     return (
       <React.Fragment>
@@ -87,6 +94,14 @@ class ChatMenu extends React.Component {
                 <DeleteIcon />
               </ListItemIcon>
               <ListItemText inset primary="Delete chat" />
+            </MenuItem>
+          )}
+          {!user.isChatMember && (
+            <MenuItem onClick={this.handleJoinClick}>
+              <ListItemIcon>
+                <JoinIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="Join chat" />
             </MenuItem>
           )}
         </Menu>

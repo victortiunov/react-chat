@@ -18,7 +18,7 @@ class ChatListItem extends React.Component {
     disabled: PropTypes.bool.isRequired,
     isActive: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
-  }
+  };
 
   handleClick = () => {
     this.props.onClick();

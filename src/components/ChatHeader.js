@@ -29,6 +29,7 @@ const ChatHeader = ({
   activeChat,
   leaveChat,
   deleteChat,
+  joinChat,
   isConnected,
 }) => (
   <AppBar color="primary" className={classes.appBar}>
@@ -43,6 +44,7 @@ const ChatHeader = ({
               /* eslint-disable no-underscore-dangle */
               onLeaveClick={() => leaveChat(activeChat._id)}
               onDeleteClick={() => deleteChat(activeChat._id)}
+              onJoinClick={() => joinChat(activeChat._id)}
               /* eslint-enable no-underscore-dangle */
               disabled={!isConnected}
             />
@@ -80,6 +82,7 @@ ChatHeader.propTypes = {
   }),
   leaveChat: PropTypes.func.isRequired,
   deleteChat: PropTypes.func.isRequired,
+  joinChat: PropTypes.func.isRequired,
   isConnected: PropTypes.bool.isRequired,
 };
 

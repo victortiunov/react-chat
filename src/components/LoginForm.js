@@ -21,11 +21,11 @@ class LoginForm extends React.Component {
     error: PropTypes.string,
     isFetching: PropTypes.bool.isRequired,
     onSubmit: PropTypes.func.isRequired,
-  }
+  };
 
   static defaultProps = {
     error: '',
-  }
+  };
 
   state = {
     username: {

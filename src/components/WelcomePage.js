@@ -30,11 +30,11 @@ class WelcomePage extends React.Component {
     isAuthenticated: PropTypes.bool.isRequired,
     isFetching: PropTypes.bool.isRequired,
     error: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     error: '',
-  }
+  };
 
   constructor(props) {
     super(props);

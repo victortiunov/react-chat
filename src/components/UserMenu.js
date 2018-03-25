@@ -39,7 +39,7 @@ class UserMenu extends React.Component {
     disabled: PropTypes.bool.isRequired,
     onLogout: PropTypes.func.isRequired,
     editUser: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);

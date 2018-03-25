@@ -9,27 +9,27 @@ import history from '../utils/history';
 import configureStore from '../store';
 
 const styles = theme => ({
-	root: {
-		position: 'relative',
-		display: 'flex',
-		width: '100%',
-		height: '100%',
-		backgroundColor: theme.palette.background.default,
-	},
+  root: {
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    backgroundColor: theme.palette.background.default,
+  },
 });
 
 const store = configureStore();
 
 const App = () => (
-	<Provider store={store}>
-		<Router history={history}>
-			<Switch>
-				<Route exact path="/" component={WelcomePage} />
-				<PrivateRoute path="/chat" component={ChatPage} />
-				<Redirect to="/" />
-			</Switch>
-		</Router>
-	</Provider>
+  <Provider store={store}>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={WelcomePage} />
+        <PrivateRoute path="/chat" component={ChatPage} />
+        <Redirect to="/" />
+      </Switch>
+    </Router>
+  </Provider>
 );
 
 export default withStyles(styles)(App);

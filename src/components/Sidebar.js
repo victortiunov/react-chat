@@ -10,86 +10,79 @@ import ChatList from './ChatList';
 import NewChatButton from './NewChatButton';
 
 const styles = theme => ({
-	drawerPaper: {
-		position: 'relative',
-		height: '100%',
-		width: 320,
-	},
-	drawerHeader: {
-		...theme.mixins.toolbar,
-		paddingLeft: theme.spacing.unit * 3,
-		paddingRight: theme.spacing.unit * 3,
-	},
+  drawerPaper: {
+    position: 'relative',
+    height: '100%',
+    width: 320,
+  },
+  drawerHeader: {
+    ...theme.mixins.toolbar,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+  },
 });
 
 class Sidebar extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			activeTab: 0,
-			searchTitle: '',
-		};
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: 0,
+      searchTitle: '',
+    };
+  }
 
-	getChats = () => {
-		const searchTitle = this.state.searchTitle.toUpperCase();
-		const chats = this.state.activeTab === 0 ? this.props.myChats : this.props.allChats;
+  getChats = () => {
+    const searchTitle = this.state.searchTitle.toUpperCase();
+    const chats = this.state.activeTab === 0 ? this.props.myChats : this.props.allChats;
 
-		return chats.filter(chat => chat.title.toUpperCase().includes(searchTitle));
-	}
+    return chats.filter(chat => chat.title.toUpperCase().includes(searchTitle));
+  };
 
-	handleSearchTitleChange = (e) => {
-		this.setState({ searchTitle: e.target.value });
-	}
+  handleSearchTitleChange = (e) => {
+    this.setState({ searchTitle: e.target.value });
+  };
 
-	handleTabChange = (e, value) => {
-		this.setState({ activeTab: value, searchTitle: '' });
-	}
+  handleTabChange = (e, value) => {
+    this.setState({ activeTab: value, searchTitle: '' });
+  };
 
-	render() {
-		const { activeTab, searchTitle } = this.state;
-		const {
-			classes, activeChat, createChat, setActiveChat, isConnected,
-		} = this.props;
+  render() {
+    const { activeTab, searchTitle } = this.state;
+    const {
+      classes, activeChat, createChat, setActiveChat, isConnected,
+    } = this.props;
 
-		return (
-			<Drawer
-				variant="permanent"
-				classes={{
-					paper: classes.drawerPaper,
-				}}
-			>
-				<div className={classes.drawerHeader}>
-					<TextField
-						fullWidth
-						margin="normal"
-						value={searchTitle}
-						placeholder="Search chats..."
-						onChange={this.handleSearchTitleChange}
-					/>
-				</div>
-				<Divider />
-				<ChatList
-					activeChat={activeChat}
-					chats={this.getChats()}
-					setActiveChat={setActiveChat}
-					disabled={!isConnected}
-				/>
-				<NewChatButton
-					createChat={createChat}
-					disabled={!isConnected}
-				/>
-				<BottomNavigation
-					value={activeTab}
-					onChange={this.handleTabChange}
-					showLabels
-				>
-					<BottomNavigationAction label="My Chats" icon={<MyChatsIcon />} />
-					<BottomNavigationAction label="Global" icon={<GlobalIcon />} />
-				</BottomNavigation>
-			</Drawer>
-		);
-	}
+    return (
+      <Drawer
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <TextField
+            fullWidth
+            margin="normal"
+            value={searchTitle}
+            placeholder="Search chats..."
+            onChange={this.handleSearchTitleChange}
+          />
+        </div>
+        <Divider />
+        <ChatList
+          activeChat={activeChat}
+          chats={this.getChats()}
+          setActiveChat={setActiveChat}
+          disabled={!isConnected}
+        />
+        <NewChatButton createChat={createChat} disabled={!isConnected} />
+        <BottomNavigation value={activeTab} onChange={this.handleTabChange} showLabels>
+          <BottomNavigationAction label="My Chats" icon={<MyChatsIcon />} />
+          <BottomNavigationAction label="Global" icon={<GlobalIcon />} />
+        </BottomNavigation>
+      </Drawer>
+    );
+  }
 }
 
 export default withStyles(styles)(Sidebar);

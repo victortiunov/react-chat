@@ -10,9 +10,9 @@ const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);
 
 if (module.hot) {
-	module.hot.accept('./components/App', () => {
-		ReactDOM.render(<App />, rootElement);
-	});
+  module.hot.accept('./components/App', () => {
+    ReactDOM.render(<App />, rootElement);
+  });
 }
 
 registerServiceWorker();

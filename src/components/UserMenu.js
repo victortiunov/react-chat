@@ -14,192 +14,175 @@ import Avatar from './Avatar';
 import userName from '../utils/user-name';
 
 const styles = theme => ({
-	modalDialog: {
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	modalForm: {
-		width: '30%',
-		minWidth: '300px',
-		padding: theme.spacing.unit * 3,
-		backgroundColor: theme.palette.background.paper,
-	},
+  modalDialog: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalForm: {
+    width: '30%',
+    minWidth: '300px',
+    padding: theme.spacing.unit * 3,
+    backgroundColor: theme.palette.background.paper,
+  },
 });
 
 class UserMenu extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			menuElement: null,
-			user: {
-				username: '',
-				firstName: '',
-				lastName: '',
-			},
-			avatarName: '',
-			modalEdit: {
-				username: '',
-				firstName: '',
-				lastName: '',
-			},
-			modalView: false,
-		};
-	}
+    this.state = {
+      menuElement: null,
+      user: {
+        username: '',
+        firstName: '',
+        lastName: '',
+      },
+      avatarName: '',
+      modalEdit: {
+        username: '',
+        firstName: '',
+        lastName: '',
+      },
+      modalView: false,
+    };
+  }
 
-	componentWillReceiveProps(nextProps) {
-		const { user } = nextProps;
+  componentWillReceiveProps(nextProps) {
+    const { user } = nextProps;
 
-		if (user) {
-			this.setState({
-				user: { ...user },
-				avatarName: userName(user.username, user.firstName, user.lastName),
-				modalEdit: { ...user },
-			});
-		}
-	}
+    if (user) {
+      this.setState({
+        user: { ...user },
+        avatarName: userName(user.username, user.firstName, user.lastName),
+        modalEdit: { ...user },
+      });
+    }
+  }
 
-	handleClick = (e) => {
-		this.setState({ menuElement: this.props.disabled ? null : e.currentTarget });
-	}
+  handleClick = (e) => {
+    this.setState({ menuElement: this.props.disabled ? null : e.currentTarget });
+  };
 
-	handleClose = () => {
-		this.setState({ menuElement: null });
-	}
+  handleClose = () => {
+    this.setState({ menuElement: null });
+  };
 
-	handleLogout = () => {
-		this.handleClose();
-		this.props.onLogout();
-	}
+  handleLogout = () => {
+    this.handleClose();
+    this.props.onLogout();
+  };
 
-	toggleModal = () => {
-		this.handleClose();
-		this.setState({
-			modalView: !this.state.modalView,
-			modalEdit: {
-				...this.state.user,
-			},
-		});
-	}
+  toggleModal = () => {
+    this.handleClose();
+    this.setState({
+      modalView: !this.state.modalView,
+      modalEdit: {
+        ...this.state.user,
+      },
+    });
+  };
 
-	handleInputChange = (event) => {
-		event.persist();
-		const { name, value } = event.target;
+  handleInputChange = (event) => {
+    event.persist();
+    const { name, value } = event.target;
 
-		this.setState((prevState) => {
-			const { modalEdit } = prevState;
-			return ({
-				modalEdit: {
-					...modalEdit,
-					[name]: value,
-				},
-			});
-		});
-	}
+    this.setState((prevState) => {
+      const { modalEdit } = prevState;
+      return {
+        modalEdit: {
+          ...modalEdit,
+          [name]: value,
+        },
+      };
+    });
+  };
 
-	handleSubmit = (e) => {
-		e.preventDefault();
-		this.toggleModal();
-		this.props.editUser(this.state.login, this.state.firstName, this.state.lastName);
-	}
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.toggleModal();
+    this.props.editUser(this.state.login, this.state.firstName, this.state.lastName);
+  };
 
-	render() {
-		const { classes } = this.props;
-		const { menuElement, modalView, avatarName } = this.state;
-		const { username, firstName, lastName } = this.state.modalEdit;
+  render() {
+    const { classes } = this.props;
+    const { menuElement, modalView, avatarName } = this.state;
+    const { username, firstName, lastName } = this.state.modalEdit;
 
-		return (
-			<React.Fragment>
-				{avatarName &&
-					<IconButton
-						aria-owns={menuElement ? 'user-menu' : null}
-						aria-haspopup="true"
-						onClick={this.handleClick}
-					>
-						<Avatar colorFrom={avatarName}>{avatarName}</Avatar>
-					</IconButton>
-				}
-				<Menu
-					id="user-menu"
-					anchorEl={menuElement}
-					open={!!menuElement}
-					onClose={this.handleClose}
-				>
-					<MenuItem onClick={this.toggleModal}>
-						<ListItemIcon>
-							<EditIcon />
-						</ListItemIcon>
-						<ListItemText inset primary="Edit Profile" />
-					</MenuItem>
-					<MenuItem onClick={this.handleLogout}>
-						<ListItemIcon>
-							<LogoutIcon />
-						</ListItemIcon>
-						<ListItemText inset primary="Logout" />
-					</MenuItem>
-				</Menu>
-				<Modal
-					className={classes.modalDialog}
-					open={modalView}
-					onClose={this.toggleModal}
-				>
-					<form
-						className={classes.modalForm}
-						onSubmit={this.handleSubmit}
-					>
-						<Typography variant="title" id="modal-title">
-							Edit profile
-						</Typography>
-						<TextField
-							required
-							fullWidth
-							label="Username"
-							placeholder="Enter your username..."
-							type="text"
-							margin="normal"
-							autoComplete="username"
-							name="username"
-							value={username}
-							onChange={this.handleInputChange}
-							error={!username}
-						/>
-						<TextField
-							fullWidth
-							autoFocus
-							label="First name"
-							placeholder="Enter your first name..."
-							type="text"
-							margin="normal"
-							autoComplete="firstName"
-							name="firstName"
-							value={firstName}
-							onChange={this.handleInputChange}
-						/>
-						<TextField
-							fullWidth
-							label="Last name"
-							placeholder="Enter your second name..."
-							type="text"
-							margin="normal"
-							autoComplete="username"
-							name="lastName"
-							value={lastName}
-							onChange={this.handleInputChange}
-						/>
-						<Button
-							variant="raised"
-							type="submit"
-							color="primary"
-							disabled={!username}
-						>
-							Save
-						</Button>
-					</form>
-				</Modal>
-			</React.Fragment>
-		);
-	}
+    return (
+      <React.Fragment>
+        {avatarName && (
+          <IconButton
+            aria-owns={menuElement ? 'user-menu' : null}
+            aria-haspopup="true"
+            onClick={this.handleClick}
+          >
+            <Avatar colorFrom={avatarName}>{avatarName}</Avatar>
+          </IconButton>
+        )}
+        <Menu id="user-menu" anchorEl={menuElement} open={!!menuElement} onClose={this.handleClose}>
+          <MenuItem onClick={this.toggleModal}>
+            <ListItemIcon>
+              <EditIcon />
+            </ListItemIcon>
+            <ListItemText inset primary="Edit Profile" />
+          </MenuItem>
+          <MenuItem onClick={this.handleLogout}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText inset primary="Logout" />
+          </MenuItem>
+        </Menu>
+        <Modal className={classes.modalDialog} open={modalView} onClose={this.toggleModal}>
+          <form className={classes.modalForm} onSubmit={this.handleSubmit}>
+            <Typography variant="title" id="modal-title">
+              Edit profile
+            </Typography>
+            <TextField
+              required
+              fullWidth
+              label="Username"
+              placeholder="Enter your username..."
+              type="text"
+              margin="normal"
+              autoComplete="username"
+              name="username"
+              value={username}
+              onChange={this.handleInputChange}
+              error={!username}
+            />
+            <TextField
+              fullWidth
+              autoFocus
+              label="First name"
+              placeholder="Enter your first name..."
+              type="text"
+              margin="normal"
+              autoComplete="firstName"
+              name="firstName"
+              value={firstName}
+              onChange={this.handleInputChange}
+            />
+            <TextField
+              fullWidth
+              label="Last name"
+              placeholder="Enter your second name..."
+              type="text"
+              margin="normal"
+              autoComplete="username"
+              name="lastName"
+              value={lastName}
+              onChange={this.handleInputChange}
+            />
+            <Button variant="raised" type="submit" color="primary" disabled={!username}>
+              Save
+            </Button>
+          </form>
+        </Modal>
+      </React.Fragment>
+    );
+  }
 }
 
 export default withStyles(styles)(UserMenu);

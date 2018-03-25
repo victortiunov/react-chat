@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
-import Avatar from './Avatar';
+import Avatar from '../Avatar';
 
 describe('<Avatar />', () => {
   it('renders without crashing', () => {

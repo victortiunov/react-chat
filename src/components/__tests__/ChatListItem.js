@@ -8,6 +8,7 @@ const mockProps = {
   title: 'Gryffindor Talks',
   disabled: false,
   isActive: false,
+  unreadMessages: false,
   onClick: jest.fn(),
 };
 
@@ -32,6 +33,12 @@ describe('<ChatListItem />', () => {
 
   it('renders active correctly', () => {
     const tree = renderer.create(<ChatListItem {...mockProps} isActive />).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders correctly with new messages', () => {
+    const tree = renderer.create(<ChatListItem {...mockProps} unreadMessages />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

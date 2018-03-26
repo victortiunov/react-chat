@@ -25,6 +25,7 @@ const activeId = (state = initialState.activeId, action) => {
       return state;
   }
 };
+
 const allIds = (state = initialState.allIds, action) => {
   switch (action.type) {
     case types.FETCH_ALL_CHATS_SUCCESS:
@@ -39,6 +40,7 @@ const allIds = (state = initialState.allIds, action) => {
       return state;
   }
 };
+
 const myIds = (state = initialState.myIds, action) => {
   switch (action.type) {
     case types.FETCH_MY_CHATS_SUCCESS:
@@ -55,6 +57,7 @@ const myIds = (state = initialState.myIds, action) => {
       return state;
   }
 };
+
 const byIds = (state = initialState.byIds, action) => {
   switch (action.type) {
     case types.FETCH_ALL_CHATS_SUCCESS:
@@ -65,7 +68,10 @@ const byIds = (state = initialState.byIds, action) => {
           (ids, chat) => ({
             ...ids,
             // eslint-disable-next-line
-            [chat._id]: chat,
+            [chat._id]: {
+              ...chat,
+              unreadMessages: false,
+            },
           }),
           {},
         ),
@@ -73,16 +79,30 @@ const byIds = (state = initialState.byIds, action) => {
     case types.FETCH_CHAT_SUCCESS:
     case types.CREATE_CHAT_SUCCESS:
     case types.LEAVE_CHAT_SUCCESS:
-    case types.RECIEVE_NEW_CHAT:
+    case types.RECIEVE_NEW_CHAT: {
       return {
         ...state,
-        [getChatId(action.payload.chat)]: action.payload.chat,
+        [getChatId(action.payload.chat)]: {
+          ...action.payload.chat,
+          unreadMessages: false,
+        },
       };
+    }
     case types.DELETE_CHAT_SUCCESS:
     case types.RECIEVE_DELETED_CHAT: {
       const newState = { ...state };
       delete newState[getChatId(action.payload.chat)];
       return newState;
+    }
+    case types.RECIEVE_MESSAGE: {
+      const { chatId } = action.payload;
+      return {
+        ...state,
+        [chatId]: {
+          ...state[chatId],
+          unreadMessages: true,
+        },
+      };
     }
 
     default:
@@ -101,3 +121,4 @@ export default combineReducers({
 export const getChatId = chat => chat._id;
 export const getByIds = (state, ids) => ids.map(id => state.byIds[id]);
 export const getById = (state, id) => state.byIds[id];
+export const getActiveChatId = state => state.activeId;

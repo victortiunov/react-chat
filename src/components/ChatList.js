@@ -21,6 +21,7 @@ const ChatList = ({
         key={chat._id}
         {...chat}
         isActive={activeChat ? chat._id === activeChat._id : false}
+        unreadMessages={chat.unreadMessages}
         onClick={() => setActiveChat(chat._id)}
         /* eslint-enable no-underscore-dangle */
         disabled={disabled}

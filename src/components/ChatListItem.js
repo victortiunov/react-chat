@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
-import { ListItem, ListItemText } from 'material-ui/List';
+import { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
+import Icon from 'material-ui-icons/Mail';
 import Avatar from './Avatar';
 
 const styles = () => ({
   activeChat: {
     backgroundColor: 'lightcyan',
+  },
+  newMessage: {
+    color: '#64B5F6',
   },
 });
 
@@ -17,6 +21,7 @@ class ChatListItem extends React.Component {
     title: PropTypes.string.isRequired,
     disabled: PropTypes.bool.isRequired,
     isActive: PropTypes.bool.isRequired,
+    unreadMessages: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
   };
 
@@ -26,7 +31,9 @@ class ChatListItem extends React.Component {
 
   render() {
     const title = this.props.title ? this.props.title : 'No Title';
-    const { classes, disabled, isActive } = this.props;
+    const {
+      classes, disabled, isActive, unreadMessages,
+    } = this.props;
 
     return (
       <ListItem
@@ -38,6 +45,11 @@ class ChatListItem extends React.Component {
       >
         <Avatar colorFrom={title}>{title}</Avatar>
         <ListItemText primary={title} />
+        {unreadMessages && (
+          <ListItemIcon>
+            <Icon className={classes.newMessage} />
+          </ListItemIcon>
+        )}
       </ListItem>
     );
   }

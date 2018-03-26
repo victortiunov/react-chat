@@ -2,7 +2,7 @@
 
 exports[`<ChatListItem /> renders active correctly 1`] = `
 <li
-  className="MuiListItem-root-46 MuiListItem-default-49 MuiListItem-gutters-53 MuiListItem-divider-52 ChatListItem-activeChat-45"
+  className="MuiListItem-root-48 MuiListItem-default-51 MuiListItem-gutters-55 MuiListItem-divider-54 ChatListItem-activeChat-46"
   disabled={false}
   onClick={[Function]}
   style={
@@ -12,7 +12,7 @@ exports[`<ChatListItem /> renders active correctly 1`] = `
   }
 >
   <div
-    className="MuiAvatar-root-56 MuiAvatar-colorDefault-57"
+    className="MuiAvatar-root-58 MuiAvatar-colorDefault-59"
     style={
       Object {
         "backgroundColor": "#8bc34a",
@@ -22,10 +22,10 @@ exports[`<ChatListItem /> renders active correctly 1`] = `
     GT
   </div>
   <div
-    className="MuiListItemText-root-59"
+    className="MuiListItemText-root-61"
   >
     <h3
-      className="MuiTypography-root-65 MuiTypography-subheading-72 MuiListItemText-primary-62"
+      className="MuiTypography-root-67 MuiTypography-subheading-74 MuiListItemText-primary-64"
     >
       Gryffindor Talks
     </h3>
@@ -35,7 +35,7 @@ exports[`<ChatListItem /> renders active correctly 1`] = `
 
 exports[`<ChatListItem /> renders correctly 1`] = `
 <li
-  className="MuiListItem-root-46 MuiListItem-default-49 MuiListItem-gutters-53 MuiListItem-divider-52"
+  className="MuiListItem-root-48 MuiListItem-default-51 MuiListItem-gutters-55 MuiListItem-divider-54"
   disabled={false}
   onClick={[Function]}
   style={
@@ -45,7 +45,7 @@ exports[`<ChatListItem /> renders correctly 1`] = `
   }
 >
   <div
-    className="MuiAvatar-root-56 MuiAvatar-colorDefault-57"
+    className="MuiAvatar-root-58 MuiAvatar-colorDefault-59"
     style={
       Object {
         "backgroundColor": "#8bc34a",
@@ -55,10 +55,10 @@ exports[`<ChatListItem /> renders correctly 1`] = `
     GT
   </div>
   <div
-    className="MuiListItemText-root-59"
+    className="MuiListItemText-root-61"
   >
     <h3
-      className="MuiTypography-root-65 MuiTypography-subheading-72 MuiListItemText-primary-62"
+      className="MuiTypography-root-67 MuiTypography-subheading-74 MuiListItemText-primary-64"
     >
       Gryffindor Talks
     </h3>
@@ -66,9 +66,53 @@ exports[`<ChatListItem /> renders correctly 1`] = `
 </li>
 `;
 
+exports[`<ChatListItem /> renders correctly with new messages 1`] = `
+<li
+  className="MuiListItem-root-48 MuiListItem-default-51 MuiListItem-gutters-55 MuiListItem-divider-54"
+  disabled={false}
+  onClick={[Function]}
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  <div
+    className="MuiAvatar-root-58 MuiAvatar-colorDefault-59"
+    style={
+      Object {
+        "backgroundColor": "#8bc34a",
+      }
+    }
+  >
+    GT
+  </div>
+  <div
+    className="MuiListItemText-root-61"
+  >
+    <h3
+      className="MuiTypography-root-67 MuiTypography-subheading-74 MuiListItemText-primary-64"
+    >
+      Gryffindor Talks
+    </h3>
+  </div>
+  <svg
+    aria-hidden="true"
+    className="MuiSvgIcon-root-92 MuiListItemIcon-root-91 ChatListItem-newMessage-47"
+    color={undefined}
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+    />
+  </svg>
+</li>
+`;
+
 exports[`<ChatListItem /> renders disabled correctly 1`] = `
 <li
-  className="MuiListItem-root-46 MuiListItem-default-49 MuiListItem-gutters-53 MuiListItem-divider-52 MuiListItem-disabled-51"
+  className="MuiListItem-root-48 MuiListItem-default-51 MuiListItem-gutters-55 MuiListItem-divider-54 MuiListItem-disabled-53"
   disabled={true}
   onClick={[Function]}
   style={
@@ -78,7 +122,7 @@ exports[`<ChatListItem /> renders disabled correctly 1`] = `
   }
 >
   <div
-    className="MuiAvatar-root-56 MuiAvatar-colorDefault-57"
+    className="MuiAvatar-root-58 MuiAvatar-colorDefault-59"
     style={
       Object {
         "backgroundColor": "#8bc34a",
@@ -88,10 +132,10 @@ exports[`<ChatListItem /> renders disabled correctly 1`] = `
     GT
   </div>
   <div
-    className="MuiListItemText-root-59"
+    className="MuiListItemText-root-61"
   >
     <h3
-      className="MuiTypography-root-65 MuiTypography-subheading-72 MuiListItemText-primary-62"
+      className="MuiTypography-root-67 MuiTypography-subheading-74 MuiListItemText-primary-64"
     >
       Gryffindor Talks
     </h3>

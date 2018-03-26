@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import ChatList from '../ChatList';
 
+jest.mock('../ChatListItem', () => () => 'ChatListItem');
+
 const mockProps = {
   activeChat: {
     _id: '373737',

@@ -60,23 +60,31 @@ class ChatPage extends React.Component {
       recieveAuth, fetchAllChats, fetchMyChats, socketsConnect,
     } = this.props;
 
-    Promise.all([recieveAuth(), fetchAllChats(), fetchMyChats()]).then(() => {
-      socketsConnect();
-    });
+    Promise.all([recieveAuth(), fetchAllChats(), fetchMyChats()])
+      .then(() => {
+        socketsConnect();
+      })
+      .then(() => {
+        this.props.myChats.forEach((chat) => {
+          // eslint-disable-next-line
+          this.props.mountChat(chat._id);
+        });
+      });
   }
 
   componentWillReceiveProps(nextProps) {
-    const prevChat = this.props.activeChat;
-    const nextChat = nextProps.activeChat;
+    /* eslint-disable no-underscore-dangle */
+    const currentMyChats = this.props.myChats.map(chat => chat._id) || [];
+    const nextMyChats = nextProps.myChats.map(chat => chat._id) || [];
+    /* eslint-enable no-underscore-dangle */
 
-    if (nextChat) {
-      /* eslint-disable no-underscore-dangle */
-      if (prevChat && prevChat._id !== nextChat._id) {
-        this.props.unmountChat(prevChat._id);
-      }
-      this.props.mountChat(nextChat._id);
-      /* eslint-enable no-underscore-dangle */
-    }
+    currentMyChats.filter(id => !nextMyChats.includes(id)).forEach((id) => {
+      this.props.unmountChat(id);
+    });
+
+    nextMyChats.filter(id => !currentMyChats.includes(id)).forEach((id) => {
+      this.props.mountChat(id);
+    });
   }
 
   render() {

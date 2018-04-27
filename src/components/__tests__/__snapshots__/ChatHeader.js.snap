@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatHeader /> renders correctly 1`] = `
+<header
+  className="MuiPaper-root-105 MuiPaper-elevation4-111 MuiAppBar-root-97 MuiAppBar-positionFixed-98 MuiAppBar-colorPrimary-103 mui-fixed ChatHeader-appBar-95"
+>
+  <div
+    className="MuiToolbar-root-132 MuiToolbar-gutters-133"
+  >
+    <div
+      className="MuiAvatar-root-134 MuiAvatar-colorDefault-135"
+      style={
+        Object {
+          "backgroundColor": "#8bc34a",
+        }
+      }
+    >
+      GT
+    </div>
+    <h2
+      className="MuiTypography-root-137 MuiTypography-title-143 ChatHeader-appBarTitle-96"
+    >
+      Gryffindor Talks
+      <button
+        aria-haspopup="true"
+        aria-owns={null}
+        className="MuiButtonBase-root-167 MuiIconButton-root-161 MuiIconButton-colorInherit-162"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="button"
+      >
+        <span
+          className="MuiIconButton-label-166"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-170"
+            color={undefined}
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          className="MuiTouchRipple-root-176"
+        />
+      </button>
+    </h2>
+    
+  </div>
+</header>
+`;
+
+exports[`<ChatHeader /> renders without active chat 1`] = `
+<header
+  className="MuiPaper-root-105 MuiPaper-elevation4-111 MuiAppBar-root-97 MuiAppBar-positionFixed-98 MuiAppBar-colorPrimary-103 mui-fixed ChatHeader-appBar-95"
+>
+  <div
+    className="MuiToolbar-root-132 MuiToolbar-gutters-133"
+  >
+    <h2
+      className="MuiTypography-root-137 MuiTypography-title-143 ChatHeader-appBarTitle-96"
+    >
+      DogeCodes React Chat
+    </h2>
+    
+  </div>
+</header>
+`;

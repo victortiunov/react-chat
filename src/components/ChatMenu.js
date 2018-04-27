@@ -1,83 +1,113 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import { ListItemIcon, ListItemText } from 'material-ui/List';
 import MoreIcon from 'material-ui-icons/MoreVert';
 import LeaveIcon from 'material-ui-icons/ExitToApp';
 import DeleteIcon from 'material-ui-icons/Delete';
+import JoinIcon from 'material-ui-icons/PlaylistAdd';
 
 class ChatMenu extends React.Component {
-	constructor(props) {
-		super(props);
+  static propTypes = {
+    user: PropTypes.shape({
+      username: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      isMember: PropTypes.bool.isRequired,
+      isCreator: PropTypes.bool.isRequired,
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+    disabled: PropTypes.bool.isRequired,
+    onLeaveClick: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func.isRequired,
+    onJoinClick: PropTypes.func.isRequired,
+  };
 
-		this.state = {
-			menuElement: null
-		}
-	}
+  constructor(props) {
+    super(props);
 
-	handleClick = (e) => {
-		this.setState({ menuElement: e.currentTarget });
-	};
+    this.state = {
+      menuElement: null,
+    };
+  }
 
-	handleClose = () => {
-		this.setState({ menuElement: null });
-	};
+  handleClick = (e) => {
+    this.setState({ menuElement: e.currentTarget });
+  };
 
-	handleLeaveClick = () => {
-		this.handleClose();
-		this.props.onLeaveClick();
-	};
+  handleClose = () => {
+    this.setState({ menuElement: null });
+  };
 
-	handleDeleteClick = () => {
-		this.handleClose();
-		this.props.onDeleteClick();
-	};
+  handleLeaveClick = () => {
+    this.handleClose();
+    this.props.onLeaveClick();
+  };
 
-	render() {
-		const { user, disabled } = this.props;
-		const { menuElement } = this.state;
+  handleDeleteClick = () => {
+    this.handleClose();
+    this.props.onDeleteClick();
+  };
 
-		if (!user.isChatMember) {
-			return null;
-		}
+  handleJoinClick = () => {
+    this.handleClose();
+    this.props.onJoinClick();
+  };
 
-		return (
-			<React.Fragment>
-				<IconButton
-					color="inherit"
-					aria-owns={menuElement ? 'simple-menu' : null}
-					aria-haspopup="true"
-					disabled={disabled}
-					onClick={this.handleClick}
-				>
-					<MoreIcon />
-				</IconButton>
-				<Menu
-					id="simple-menu"
-					anchorEl={menuElement}
-					open={!!menuElement}
-					onClose={this.handleClose}
-				>
-					{user.isMember &&
-						<MenuItem onClick={this.handleLeaveClick}>
-							<ListItemIcon>
-								<LeaveIcon />
-							</ListItemIcon>
-							<ListItemText inset primary="Leave chat" />
-						</MenuItem>
-					}
-					{user.isCreator &&
-						<MenuItem onClick={this.handleDeleteClick}>
-							<ListItemIcon>
-								<DeleteIcon />
-							</ListItemIcon>
-							<ListItemText inset primary="Delete chat" />
-						</MenuItem>
-					}
-				</Menu>
-			</React.Fragment>
-		);
-	}
+  render() {
+    const { user, disabled } = this.props;
+    const { menuElement } = this.state;
+
+    // if (!user.isChatMember) {
+    //   return null;
+    // }
+
+    return (
+      <React.Fragment>
+        <IconButton
+          color="inherit"
+          aria-owns={menuElement ? 'simple-menu' : null}
+          aria-haspopup="true"
+          disabled={disabled}
+          onClick={this.handleClick}
+        >
+          <MoreIcon />
+        </IconButton>
+        <Menu
+          id="simple-menu"
+          anchorEl={menuElement}
+          open={!!menuElement}
+          onClose={this.handleClose}
+        >
+          {user.isMember && (
+            <MenuItem onClick={this.handleLeaveClick}>
+              <ListItemIcon>
+                <LeaveIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="Leave chat" />
+            </MenuItem>
+          )}
+          {user.isCreator && (
+            <MenuItem onClick={this.handleDeleteClick}>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="Delete chat" />
+            </MenuItem>
+          )}
+          {!user.isChatMember && (
+            <MenuItem onClick={this.handleJoinClick}>
+              <ListItemIcon>
+                <JoinIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="Join chat" />
+            </MenuItem>
+          )}
+        </Menu>
+      </React.Fragment>
+    );
+  }
 }
 
 export default ChatMenu;

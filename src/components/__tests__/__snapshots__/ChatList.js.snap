@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatList /> renders correctly 1`] = `
+<ul
+  className="MuiList-root-7 MuiList-padding-8 ChatList-chatsList-6"
+>
+  ChatListItem
+  ChatListItem
+  ChatListItem
+  ChatListItem
+</ul>
+`;
+
+exports[`<ChatList /> renders disabled correctly 1`] = `
+<ul
+  className="MuiList-root-7 MuiList-padding-8 ChatList-chatsList-6"
+>
+  ChatListItem
+  ChatListItem
+  ChatListItem
+  ChatListItem
+</ul>
+`;
+
+exports[`<ChatList /> renders without active chat 1`] = `
+<ul
+  className="MuiList-root-7 MuiList-padding-8 ChatList-chatsList-6"
+>
+  ChatListItem
+  ChatListItem
+  ChatListItem
+  ChatListItem
+</ul>
+`;

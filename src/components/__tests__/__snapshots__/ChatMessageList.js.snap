@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatMessageList /> renders correctly 1`] = `
+<div
+  className="ChatMessageList-messagesWrapper-62"
+>
+  <div
+    className="ChatMessage-messageWrapper-63"
+  >
+    <div
+      className="MuiAvatar-root-69 MuiAvatar-colorDefault-70"
+      style={
+        Object {
+          "backgroundColor": "#e91e63",
+        }
+      }
+    >
+      DE
+    </div>
+    <div
+      className="MuiPaper-root-72 MuiPaper-elevation2-76 MuiPaper-rounded-73 ChatMessage-message-65"
+    >
+      <span
+        className="MuiTypography-root-99 MuiTypography-caption-109"
+      >
+        Dobby Elf
+      </span>
+      <p
+        className="MuiTypography-root-99 MuiTypography-body1-108"
+      >
+         joined
+        <span
+          className="MuiTypography-root-99 MuiTypography-caption-109"
+        >
+          37 days ago
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
+    className="ChatMessage-messageWrapper-63"
+  >
+    <div
+      className="MuiAvatar-root-69 MuiAvatar-colorDefault-70"
+      style={
+        Object {
+          "backgroundColor": "#009688",
+        }
+      }
+    >
+      HG
+    </div>
+    <div
+      className="MuiPaper-root-72 MuiPaper-elevation2-76 MuiPaper-rounded-73 ChatMessage-message-65"
+    >
+      <span
+        className="MuiTypography-root-99 MuiTypography-caption-109"
+      >
+        Hermione Granger
+      </span>
+      <p
+        className="MuiTypography-root-99 MuiTypography-body1-108"
+      >
+        Dobby!!!
+        <span
+          className="MuiTypography-root-99 MuiTypography-caption-109"
+        >
+          37 days ago
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
+    className="ChatMessage-messageWrapper-63 ChatMessage-messageWrappperFromMe-64"
+  >
+    <div
+      className="MuiPaper-root-72 MuiPaper-elevation2-76 MuiPaper-rounded-73 ChatMessage-message-65 ChatMessage-messageFromMe-66"
+    >
+      <span
+        className="MuiTypography-root-99 MuiTypography-caption-109"
+      >
+        Harry Potter
+      </span>
+      <p
+        className="MuiTypography-root-99 MuiTypography-body1-108"
+      >
+        Hi, Dobby!
+        <span
+          className="MuiTypography-root-99 MuiTypography-caption-109"
+        >
+          37 days ago
+        </span>
+      </p>
+    </div>
+    <div
+      className="MuiAvatar-root-69 MuiAvatar-colorDefault-70"
+      style={
+        Object {
+          "backgroundColor": "#009688",
+        }
+      }
+    >
+      HP
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ChatMessageList /> renders correctly without messages 1`] = `
+<div
+  className="ChatMessageList-messagesWrapper-62"
+/>
+`;
